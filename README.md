@@ -6,11 +6,9 @@
 
 ## General Info
 This browser based web application to ...
-<<<<<<< HEAD
 * Hello, my name is Buck. I am excited to work on this team project. Yay!
-=======
-* Hi my name is Lester. I'm excited about this project because this is my first time coding an app in a team setting - so this is as closest thing to a real world model I have done
->>>>>>> 745b2b1 (Added one line intro to README file for Lester)
+* Hello, my name is Jonathan. I am excited to work on this team project 
+* because...
 	
 ## Technologies
 Technologies used for this project:
