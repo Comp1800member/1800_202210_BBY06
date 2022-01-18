@@ -6,6 +6,7 @@
 
 ## General Info
 This browser based web application to ...
+* Hello, my name is Buck. I am excited to work on this team project. Yay!
 	
 ## Technologies
 Technologies used for this project:
