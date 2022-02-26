@@ -1,3 +1,13 @@
+#plussign{
+    height:15px;
+    width:15px;
+}
+
+#person-icon-small{
+    height: 1.5em;
+    width: 1.5em;
+}
+
 .jumbotron{
     text-align: center;
 }
@@ -32,4 +42,3 @@
     text-align: left;
     padding-left: 0.5%;
 }
-
