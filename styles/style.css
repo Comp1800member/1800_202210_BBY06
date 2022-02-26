@@ -2,3 +2,21 @@
     height:15px;
     width:15px;
 }
+
+.jumbotron{
+    text-align: center;
+}
+
+#organizerlogin{
+    text-align: center;
+    padding-bottom: 0.5%;
+}
+
+#attendeelogin{
+    text-align:center;
+    padding-bottom: 0.5%
+}
+
+#signupbutton{
+    text-align: center;;
+}
