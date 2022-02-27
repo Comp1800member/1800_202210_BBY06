@@ -1,44 +1,84 @@
-#plussign{
-    height:15px;
-    width:15px;
+#plussign {
+    height: 15px;
+    width: 15px;
 }
 
-#person-icon-small{
+#person-icon-small {
     height: 1.5em;
     width: 1.5em;
 }
 
-.jumbotron{
+#person-icon-big {
+    height: 50px;
+    width: 50px;
+}
+
+#attended-absent-icon-small {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.jumbotron {
     text-align: center;
 }
 
-#organizerlogin{
+#organizerlogin {
     text-align: center;
     padding-bottom: 0.5%;
 }
 
-#attendeelogin{
-    text-align:center;
+#attendeelogin {
+    text-align: center;
     padding-bottom: 0.5%
 }
 
-#signupbutton{
-    text-align: center;;
+#signupbutton {
+    text-align: center;
+    ;
 }
 
-.list-group{
+.list-group {
     text-align: center;
 }
 
-.container-fluid{
+.container-fluid {
     text-align: center;
 }
 
-#attendrtitle{
+#attendrtitle {
     background-color: #f8f9fa;
 }
 
-.container-fluideventlistscreen{
+.container-fluideventlistscreen {
     text-align: left;
     padding-left: 0.5%;
+}
+
+#event-attendance-info {
+    background-color: rgb(209, 209, 209);
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+#event-description {
+    padding: 1em;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#miscellaneous-info {
+    text-align: right;
+    margin-right: 3em;
+    padding-top: 1em;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#attendance-counters-icons {
+    display: flex;
+    justify-content: space-evenly;
+    grid-column: 1 / span 2;
+    grid-row: 2;
 }
