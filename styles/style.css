@@ -82,3 +82,13 @@
     grid-column: 1 / span 2;
     grid-row: 2;
 }
+
+.checkinarea{
+    display:grid;
+    text-align: center;
+}
+
+.eventDescription{
+    display:grid;
+    text-align:center;
+}
