@@ -96,3 +96,45 @@
     display:grid;
     text-align:center;
 }
+
+/*---------------------main.html-------------------------*/
+
+.list-group-item {
+    border: black 1px solid;
+    display: flex;
+    height: 15em;
+    justify-content: space-between;
+}
+
+.list-group-item-description {
+    display: flex;
+    border: red 1px solid;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.list-group-item-misc-info-attendance {
+    display: flex;
+}
+
+.present-indicator-icon, .absent-indicator-icon {
+    height: 80px;
+    width: 80px;
+}
+
+.list-group-item-misc-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.cap-lates-indicator ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cap-lates-indicator li {
+    list-style: none;
+}
+
+
