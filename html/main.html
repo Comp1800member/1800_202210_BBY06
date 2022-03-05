@@ -15,21 +15,43 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light py-4">
-    <p>checkin</p>
+  <nav>
+    <p id="logo"><b>checkin</b></p>
+    <ul id="navbar-list">
+    <li id="nav-home">
+      <a href="#">Home</a>
+    </li>
+    <li class="nav-events">
+      <a href="#">Events</a>
+    </li>
+    <li class="nav-attendance">
+      <a href="#">Attendees</a>
+    </li>
+    <li class="nav-records">
+      <a href="records.html">Records</a>
+    </li>
+    <li class="nav-account">
+      <a href="#">Account</a>
+    </li>
+    <li class="nav-settings">
+      <a href="#">Settings</a>
+    </li>
+    <li class="nav-logout">
+      <a href="#">Log Out</a>
+    </li>
+    </ul>
+    <button id="hamburger-menu-button">hamburger</button>
   </nav>
-  <div class="jumbotron jumbotron-fluid">
-  </div>
-  <ul class="list-group">
-    <li class="list-group-item">
-      <div class="list-group-item-description">
+  <ul id="event-window">
+    <li class="event-bar">
+      <div class="event-title">
         <h3>Fundraising Meeting</h3>
-        <h4 class="list-group-item-date">February 28 2022</h4>
-        <h4 class="list-group-item-time">10:00AM</h4>
+        <h4 class="event-date">Tuesday February 28</h4>
+        <h4 class="event-time">10:00AM</h4>
         <h6> This is an event description.</h6>
       </div>
-      <div class="list-group-item-misc-info">
-        <div class="list-group-item-misc-info-attendance">
+      <div class="event-info">
+        <div class="event-attendance">
           <div class="present-indicator">
             <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
             <h4 class="present-number">18</h4>
@@ -41,7 +63,91 @@
         </div>
         <div class="cap-lates-indicator">
           <ul>
-            <li>Capactity: 20</li>
+            <li>Capacity: 20</li>
+            <li>Lates: 2</li>
+          </ul>
+        </div>
+      </div>
+
+    </li>
+
+    <li class="event-bar">
+      <div class="event-title">
+        <h3>Fundraising Meeting</h3>
+        <h4 class="event-date">Tuesday February 28</h4>
+        <h4 class="event-time">10:00AM</h4>
+        <h6> This is an event description.</h6>
+      </div>
+      <div class="event-info">
+        <div class="event-attendance">
+          <div class="present-indicator">
+            <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
+            <h4 class="present-number">18</h4>
+          </div>
+          <div class="absent-indicator">
+            <img class="absent-indicator-icon" src="../images/person-absent.png" alt="">
+            <h4 class="absent-number">2</h4>
+          </div>
+        </div>
+        <div class="cap-lates-indicator">
+          <ul>
+            <li>Capacity: 20</li>
+            <li>Lates: 2</li>
+          </ul>
+        </div>
+      </div>
+
+    </li>
+
+    <li class="event-bar">
+      <div class="event-title">
+        <h3>Fundraising Meeting</h3>
+        <h4 class="event-date">Tuesday February 28</h4>
+        <h4 class="event-time">10:00AM</h4>
+        <h6> This is an event description.</h6>
+      </div>
+      <div class="event-info">
+        <div class="event-attendance">
+          <div class="present-indicator">
+            <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
+            <h4 class="present-number">18</h4>
+          </div>
+          <div class="absent-indicator">
+            <img class="absent-indicator-icon" src="../images/person-absent.png" alt="">
+            <h4 class="absent-number">2</h4>
+          </div>
+        </div>
+        <div class="cap-lates-indicator">
+          <ul>
+            <li>Capacity: 20</li>
+            <li>Lates: 2</li>
+          </ul>
+        </div>
+      </div>
+
+    </li>
+
+    <li class="event-bar">
+      <div class="event-title">
+        <h3>Fundraising Meeting</h3>
+        <h4 class="event-date">Tuesday February 28</h4>
+        <h4 class="event-time">10:00AM</h4>
+        <h6> This is an event description.</h6>
+      </div>
+      <div class="event-info">
+        <div class="event-attendance">
+          <div class="present-indicator">
+            <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
+            <h4 class="present-number">18</h4>
+          </div>
+          <div class="absent-indicator">
+            <img class="absent-indicator-icon" src="../images/person-absent.png" alt="">
+            <h4 class="absent-number">2</h4>
+          </div>
+        </div>
+        <div class="cap-lates-indicator">
+          <ul>
+            <li>Capacity: 20</li>
             <li>Lates: 2</li>
           </ul>
         </div>
@@ -50,12 +156,51 @@
     </li>
 
   </ul>
-  <nav class="footer footer-expand-lg navbar-light bg-light py-3">
-    <div class="container-fluideventlistscreen">
-      <a class="footer-brand" href="#">Help</a>
-      <button class="btn btn-outline-success button text-right" type="submit">Plus</button>
-    </div>
-  </nav>
+  <footer>
+    <a id="help-button" href="#">Help</a>
+    <button id="add-event-button">Add Event</button>
+  </footer>
+  <div class="hamburger-menu">
+    <ul>
+      <li class="nav-home">
+        <a href="#">Home</a>
+      </li>
+      <li class="nav-events">
+        <a href="#">Events</a>
+      </li>
+      <li class="nav-attendance">
+        <a href="#">Attendees</a>
+      </li>
+      <li class="nav-records">
+        <a href="records.html">Records</a>
+      </li>
+      <li class="nav-account">
+        <a href="#">Account</a>
+      </li>
+      <li class="nav-settings">
+        <a href="#">Settings</a>
+      </li>
+      <li class="nav-logout">
+        <a href="#">Log Out</a>
+      </li>
+    </ul>
+  </div>
+  <div class="add-event">
+    <form class="event-form">
+      <p id="add-event-title">New Attendee</p><br><br><br>
+      <div id="first-name">
+      <label for="fname">First name:</label>
+      <input type="text" id="fname" name="fname"><br><br>
+      </div>
+      <label for="lname">Last name:</label>
+      <input type="text" id="lname" name="lname"><br><br>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email"><br><br>
+      <!-- add some kind of cancel button around here -->
+      <input type="submit" value="Add">
+    </form>
+  </div>
+  <script src="../scripts/script.js"></script>
 </body>
 
 </html>
