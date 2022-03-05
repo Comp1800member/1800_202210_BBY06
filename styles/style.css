@@ -88,6 +88,10 @@
     text-align: center;
 }
 
+.checkinarea button {
+    height: 5em;
+}
+
 .eventDescription{
     display:grid;
     text-align:center;
