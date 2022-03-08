@@ -278,7 +278,14 @@ footer {
 #add-event-title {
     color:black;
 }
+
+#add-and-cancel {
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
 /*---------------------Add-Event-End-------------------------*/
+/*---------------------main.html End I think???????-------------------------*/
 
 /*---------------------media query for width greater than 700px-------------------------*/
 
