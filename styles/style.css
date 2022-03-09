@@ -101,7 +101,6 @@
 
 body {
     overflow:hidden;
-
 }
 
 /*---------------------navbar-------------------------*/
@@ -150,29 +149,37 @@ align-items: center;
 .event-bar {
     border: black 1px solid;
     display: flex;
+    flex-direction: row;
     height: 15em;
     justify-content: space-between;
+    width: 100%;
+    border: 2px dotted black;
 }
 
 .event-title {
     display: flex;
-    border: red 1px solid;
     flex-direction: column;
     align-items: flex-start;
+    max-width: 50%;
 }
 
 .event-attendance {
     display: flex;
+    width:fit-content;
+
 }
 
 .event-info {
     display: flex;
     flex-direction: column;
+    border: purple 1px solid;
+    width: 20%;
+
 }
 
 .present-indicator-icon, .absent-indicator-icon {
-    height: 80px;
-    width: 80px;
+    height: 50px;
+    width: 50px;
 }
 
 .cap-lates-indicator ul {
