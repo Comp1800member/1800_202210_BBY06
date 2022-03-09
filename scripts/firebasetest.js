@@ -38,3 +38,17 @@ uploadButton.addEventListener("click", ()=> {
 downloadButton.addEventListener("click", ()=> {
 
 })
+
+let addAttendeeButton = document.getElementById("add-attendee-button");
+
+addAttendeeButton.addEventListener("click", () => {
+    db.collection("users").doc("testUser").collection("attendeeList").doc("newAttendee").set({
+        name: "New Attendee",
+        email: "newattendee@test.com"
+    }).then (function (){
+        console.log("New Attendee added!")
+    })
+    .catch(function (error) {
+        console.log(error);
+    })
+})
