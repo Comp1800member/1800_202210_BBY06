@@ -41,15 +41,33 @@ downloadButton.addEventListener("click", () => {
 
 addEventButton.addEventListener("click", () => {
     db.collection("users").doc("testUser").collection("eventList").doc("newEvent").set({
-        capacity: 20,
-        date: "march 3 2022",
-        description: "description",
-        name: "event name",
-        time: "5 pm"
-    }).then (function (){
-        console.log("New Event added!")
-    })
-    .catch(function (error) {
-        console.log(error);
-    })
+            capacity: 20,
+            date: "march 3 2022",
+            description: "description",
+            name: "event name",
+            time: "5 pm"
+        }).then(function () {
+            console.log("New Event added!")
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+})
+
+downloadButton.addEventListener("click", () => {
+
+})
+
+let addAttendeeButton = document.getElementById("add-attendee-button");
+
+addAttendeeButton.addEventListener("click", () => {
+    db.collection("users").doc("testUser").collection("attendeeList").doc("newAttendee").set({
+            name: "New Attendee",
+            email: "newattendee@test.com"
+        }).then(function () {
+            console.log("New Attendee added!")
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 })
