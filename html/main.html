@@ -45,46 +45,24 @@
     <button id="hamburger-menu-button">hamburger</button>
   </nav>
 
-  <ul id="event-window">
-    <!--Event Bar Template - to be dynamically generated-->
-    <template id="event-bar-template">
-      <div class="event-bar">
-        <div class="event-title">
-          <h3 id="event-title"></h3>
-          <h4 class="event-date" id="event-date"></h4>
-          <h4 class="event-time" id="event-time"></h4>
-          <h6 id="event-description"></h6>
-        </div>
-        <div class="event-info">
-          <div class="event-attendance">
-            <div class="present-indicator">
-              <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
-              <h4 class="present-number"></h4>
-            </div>
-            <div class="absent-indicator">
-              <img class="absent-indicator-icon" src="../images/person-absent.png" alt="">
-              <h4 class="absent-number"></h4>
-            </div>
-          </div>
-          <div class="cap-lates-indicator">
-            <ul>
-              <li>Capacity: <span id="event-capacity"></span></li>
-            </ul>
-          </div>
-        </div>
+  <div id="content-windows">
+    <div id="window-one">
+      
+    </div>
+    <div id="window-two">
 
-      </div>
-    </template>
+    </div>
+    <div id="window-three">
 
+    </div>
+  </div>
 
-
-
-
-
-  </ul>
   <footer>
     <a id="help-button" href="#">Help</a>
     <button id="load-events">Load Event List</button>
+    <button id="page-one-button">page1</button>
+    <button id="page-two-button">page2</button>
+    <button id="page-three-button">page3</button>
     <button id="add-event-button">Add Event</button>
   </footer>
   <div class="hamburger-menu">
@@ -135,5 +113,45 @@
   <script src="../scripts/lester.js"></script>
 
 </body>
+
+  <!--Event Bar Template - to be dynamically generated-->
+  <template id="upcoming-event-bar-template">
+    <div class="upcoming-event-bar">
+      <div class="event-title">
+        <h3 id="event-title"></h3>
+        <h4 class="event-date" id="event-date"></h4>
+        <h4 class="event-time" id="event-time"></h4>
+        <h6 id="event-description"></h6>
+      </div>
+      <div class="event-info">
+        <div class="event-attendance">
+          <div class="present-indicator">
+            <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
+            <h4 class="present-number"></h4>
+          </div>
+          <div class="absent-indicator">
+            <img class="absent-indicator-icon" src="../images/person-absent.png" alt="">
+            <h4 class="absent-number"></h4>
+          </div>
+        </div>
+        <div class="cap-lates-indicator">
+          <ul>
+            <li>Capacity: <span id="event-capacity"></span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </template>
+
+  <template id="event-bar-template">
+    <div class="event-bar">
+      <h3 id="event-title">Math Class</h3>
+      <h4 class="event-date" id="event-date">March 24 2022</h4>
+      <h4 class="event-time" id="event-time">10:00AM</h4>
+      <h6 id="event-description">Math class at BCIT</h6>
+    </div>
+  </template>
+
 
 </html>
