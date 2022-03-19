@@ -48,22 +48,22 @@
   </nav>
 
   <div id="content-windows">
-    <div id="window-one">
-      <div id="attendee-group-buttons">
-        <button id="attendee-view-button">Attendees</button>
-        <button id="group-view-button">Groups</button>
+    <div id="attendee-form">
+      <h3>Add Attendee</h3>
+      <div id="attendee-form-fields">
+        <input type="text" id="firstname" name="firstname" placeholder="First Name" pattern="[A-Za-z]"
+          required="required" />
+        <input type="text" id="lastname" name="lastname" placeholder="Last Name" pattern="[A-Za-z]"
+          required="required" />
+        <input type="text" id="email" name="email" placeholder="E-mail" required="required" />
+        <h4>Add to Group:</h4>
       </div>
     </div>
-    <div id="window-two"></div>
-    <div id="window-three"></div>
   </div>
 
   <footer>
     <a id="help-button" href="#">Help</a>
-    <button id="page-one-button">page1</button>
-    <button id="page-two-button">page2</button>
-    <button id="page-three-button">page3</button>
-    <a id="add-attendee-page-button" href="add-attendee-form.html">Add Attendee</button>
+    <button id="add-attendee-button">Add</button>
   </footer>
 
   <div class="hamburger-menu">
