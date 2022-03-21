@@ -2,9 +2,8 @@
 
 let attendeesList = db.collection("users").doc("testUser").collection("attendeeList");
 
-attendeesList.get().then(
+attendeesList.orderBy("name").get().then(
   userAttendees => {
-
     let attendeeListTemplate = document.getElementById("attendee-bar-template");
     let eventWindowOne = document.getElementById("window-one");
 
