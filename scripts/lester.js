@@ -2,7 +2,7 @@
 
 let attendeesList = db.collection("users").doc("testUser").collection("attendeeList");
 
-attendeesList.orderBy("name").get().then(
+attendeesList.orderBy("lastName").get().then(
   userAttendees => {
     let attendeeListTemplate = document.getElementById("attendee-bar-template");
     let eventWindowOne = document.getElementById("window-one");
@@ -14,7 +14,7 @@ attendeesList.orderBy("name").get().then(
       let attendeeInfo = userAttendees.docs[i].data();
       let newAttendeeList = attendeeListTemplate.content.cloneNode(true);
 
-      newAttendeeList.getElementById("attendee-name").innerHTML = attendeeInfo.name;
+      newAttendeeList.getElementById("attendee-name").innerHTML = attendeeInfo.firstName + " " + attendeeInfo.lastName;
 
       eventWindowOne.appendChild(newAttendeeList);
     }
@@ -25,13 +25,14 @@ attendeesList.orderBy("name").get().then(
 let addAttendeeButton = document.getElementById("add-attendee-button");
 
 addAttendeeButton.addEventListener("click", () => {
-  let firstName = document.getElementById("firstname").value;
-  let lastName = document.getElementById("lastname").value;
-  let email = document.getElementById("email").value;
+  let first = document.getElementById("firstname").value;
+  let last = document.getElementById("lastname").value;
+  let emailAddress = document.getElementById("email").value;
 
   attendeesList.add({
-      name: firstName + " " + lastName,
-      email: email
+      firstName: first,
+      lastName: last,
+      email: emailAddress
     }).then(function () {
       console.log("New Attendee added!");
     })
