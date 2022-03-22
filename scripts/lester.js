@@ -18,7 +18,7 @@ attendeesList.orderBy("lastName").get().then(
 
       eventWindowOne.appendChild(newAttendeeList);
     }
-  })
+  });
 
 // Adding new attendee from Add Attendee form page
 
@@ -35,6 +35,9 @@ addAttendeeButton.addEventListener("click", () => {
       email: emailAddress
     }).then(function () {
       console.log("New Attendee added!");
+      document.getElementById("firstname").value="";
+      document.getElementById("lastname").value="";
+      document.getElementById("email").value="";
     })
     .catch(function (error) {
       console.log(error);
