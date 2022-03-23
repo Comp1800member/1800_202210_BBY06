@@ -316,12 +316,12 @@ footer {
 }
 
 .add-event.active {
-    bottom: -160px;
+    bottom: -100px;
     right: 0;
 }
 
 .event-form {
-    background-color: lightblue;
+    background-color: orange;
 }
 
 .add-event label {
