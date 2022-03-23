@@ -27,7 +27,7 @@
     <p id="logo"><b>checkin</b></p>
     <ul id="navbar-list">
       <li>
-        <a href="#" id="upcoming-events-button" href="main.html">Upcoming Events</a>
+        <a  id="upcoming-events-button" href="#">Upcoming Events</a>
       </li>
       <li class="nav-events">
         <a id="attendees-button" href="attendees.html">Attendees</a>
@@ -50,7 +50,20 @@
       
     </div>
     <div id="window-two">
+      <div id="event-detail-container">
+        <div id="event-detail-box">
+          <h3 id="event-detail-name">Event Name</h3>
+          <h4 id="event-detail-date">Tuesday, March 24</h4>
+          <h4 id="event-detail-time">10:00AM</h4>
+          <h4 id="event-detail-capacity">10:00AM</h4>
+          <h4 id="event-detail-Description">Description</h4>
+        </div>
+        <div id="event-detail-attendees"><h4>See Attendees</h4></div>
+        <div id="event-detail-checkin-code"><h4>Generate Checkin Code</h4>
+          <div id="event-detail-qr-code">code</div>
+        </div>
 
+      </div>
     </div>
     <div id="window-three">
 
@@ -126,10 +139,6 @@
           <div class="present-indicator">
             <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
             <h4 class="present-number"></h4>
-          </div>
-          <div class="absent-indicator">
-            <img class="absent-indicator-icon" src="../images/person-absent.png" alt="">
-            <h4 class="absent-number"></h4>
           </div>
         </div>
         <div class="cap-lates-indicator">
