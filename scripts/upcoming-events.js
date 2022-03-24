@@ -2,6 +2,8 @@
 let eventWindowOne = document.getElementById("window-one");
 let eventWindowTwo = document.getElementById("window-two");
 let eventWindowThree = document.getElementById("window-three");
+let eventButton = document.getElementById("add-event-button");
+
 let eventList = db.collection("users").doc("testUser").collection("eventList");
 
 //load event list function
@@ -62,6 +64,13 @@ function loadUpcomingEvents () {
 
             })
 
+            //append an add-event button to the bottom of window one//
+            let newAddEventButton = document.createElement("div");
+            newAddEventButton.classList.add("plus-sign-button");
+            newAddEventButton.onclick = () => showEventForm();
+            eventWindowOne.appendChild(newAddEventButton);
+
+
         })
     }
 
@@ -75,6 +84,11 @@ function loadEventDetails (eventDoc) {
     eventList.doc(eventDoc)
         .get()
         .then( userDoc => {
+
+            let windowTwoHeader = document.createElement("h4");
+            windowTwoHeader.innerHTML = "Event Details";
+            windowTwoHeader.classList.add("list-divider");
+            eventWindowTwo.appendChild(windowTwoHeader);
 
             console.log("userDoc.id: " + userDoc.id);
             console.log("userDoc.data() : " + userDoc.data());
@@ -98,9 +112,16 @@ function loadEventDetails (eventDoc) {
                 eventWindowThree.removeChild(eventWindowThree.firstChild);
             }
 
+            //creates a header for window 3//
+            let windowThreeHeader = document.createElement("h4");
+            windowThreeHeader.innerHTML = "Attendee List";
+            windowThreeHeader.classList.add("list-divider");
+            eventWindowThree.appendChild(windowThreeHeader);
+
             let attendeeBarTemplate = document.getElementById("basic-bar-template");
             console.log("userDoc.size: " + userDoc.size );
 
+            //if there are no attendees, the third window will let the user know. If there are attendees, window 3 will list the checked in attendees//
             if(userDoc.size == 0) {
                 let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
                 newAttendeeBar.getElementById("bar-title").innerHTML = "No attendees have checked in.";
@@ -109,16 +130,21 @@ function loadEventDetails (eventDoc) {
             } else {
                 userDoc.forEach( attendee => {
                     let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
-                    newAttendeeBar.getElementById("bar-title").innerHTML = attendee.id;
+                    newAttendeeBar.getElementById("bar-title").innerHTML = attendee.data().firstname + " " + attendee.data().lastname;
     
                     eventWindowThree.appendChild(newAttendeeBar);
                 })
             }
 
+            let newAddEventButton = document.createElement("div");
+            newAddEventButton.classList.add("plus-sign-button");
+            newAddEventButton.onclick = () => showAttendeeForm();
+            eventWindowThree.appendChild(newAddEventButton);
             
         })
 
 //generateQRCode();
+windowPositionTwo();
 
 }
 
@@ -154,3 +180,8 @@ function displayTime(dateTime) {
         }
     }
 }
+
+eventButton.addEventListener("click", () => {
+    eventAddMenu.classList.toggle("active");
+    console.log("This is add event menu");
+})

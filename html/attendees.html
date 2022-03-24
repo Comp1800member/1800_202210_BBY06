@@ -46,7 +46,7 @@
     </ul>
     <button id="hamburger-menu-button">hamburger</button>
   </nav>
-
+  <div id="back-window-button"></div>
   <div id="content-windows">
     <div id="window-one">
       <div id="attendee-group-buttons">
@@ -89,16 +89,20 @@
 
   <div class="add-event">
     <form class="event-form">
-      <p id="add-event-title">New Attendee</p><br><br><br>
-      <div id="first-name">
-        <label for="fname">First name:</label>
+      <p id="add-event-title">New Attendee</p>
+      <div id="attendee-form-first-name">
+        <label for="fname">First Name:</label>
         <input type="text" id="fname" name="fname"><br><br>
       </div>
-      <label for="lname">Last name:</label>
-      <input type="text" id="lname" name="lname"><br><br>
-      <label for="email">Email:</label>
-      <input type="text" id="email" name="email"><br><br>
-      <div id="cancel-and-add">
+      <div id="attendee-form-last-name">
+        <label for="fname">Last Name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+      </div>
+      <div id="attendee-form-email">
+        <label for="fname">Email:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+      </div>
+      <div id="form-cancel-and-add">
         <input type="submit" value="Cancel">
         <input id="add-attendee-button" type="submit" value="Add">
       </div>
@@ -108,8 +112,7 @@
   <script src="../scripts/script.js"></script>
   <script src="../scripts/authentication.js"></script>
   <script src="../scripts/firebaseAPI.js"></script>
-  <!--links to individual team member js files-->
-  <script src="../scripts/lester.js"></script>
+  <script src="../scripts/attendees.js"></script>
 
 </body>
 

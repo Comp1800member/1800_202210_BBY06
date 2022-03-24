@@ -1,97 +1,3 @@
-#plussign {
-    height: 15px;
-    width: 15px;
-}
-
-#person-icon-small {
-    height: 1.5em;
-    width: 1.5em;
-}
-
-#person-icon-big {
-    height: 50px;
-    width: 50px;
-}
-
-#attended-absent-icon-small {
-    height: 1.5em;
-    width: 1.5em;
-}
-
-.jumbotron {
-    text-align: center;
-}
-
-#organizerlogin {
-    text-align: center;
-    padding-bottom: 0.5%;
-}
-
-#attendeelogin {
-    text-align: center;
-    padding-bottom: 0.5%
-}
-
-#signupbutton {
-    text-align: center;
-    ;
-}
-
-.container-fluid {
-    text-align: center;
-}
-
-#attendrtitle {
-    background-color: #f8f9fa;
-}
-
-.container-fluideventlistscreen {
-    text-align: left;
-    padding-left: 0.5%;
-}
-
-#event-attendance-info {
-    background-color: rgb(209, 209, 209);
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-}
-
-#event-description {
-    padding: 1em;
-    grid-column: 1;
-    grid-row: 1;
-}
-
-#miscellaneous-info {
-    text-align: right;
-    margin-right: 3em;
-    padding-top: 1em;
-    grid-column: 2;
-    grid-row: 1;
-}
-
-#attendance-counters-icons {
-    display: flex;
-    justify-content: space-evenly;
-    grid-column: 1 / span 2;
-    grid-row: 2;
-}
-
-.checkinarea {
-    display: grid;
-    text-align: center;
-}
-
-.checkinarea button {
-    height: 5em;
-}
-
-.eventDescription {
-    display: grid;
-    text-align: center;
-}
 
 /*---------------------main.html-------------------------*/
 
@@ -142,6 +48,26 @@ nav {
     width: 280%;
     border: black 2px solid;
     transition: 0.2s;
+    position: relative;
+}
+
+#back-window-button {
+    height: 82%;
+    min-width: 20vw;
+    z-index: 30;
+    background-color:rgba(220, 220, 220, 0.8);
+    position: fixed;
+    top: 9%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-image: url(../images/back.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px 40px;
+
 }
 
 .position-one {
@@ -158,6 +84,7 @@ nav {
     min-width: 100vw;
     border: black 2px solid;
     background-color: white;
+    position: relative;
 
 }
 
@@ -167,7 +94,7 @@ nav {
     width: 90vw;
     border: black 2px solid;
     background-color: white;
-
+    position: relative;
 
 }
 
@@ -177,7 +104,7 @@ nav {
     width: 90vw;
     border: black 2px solid;
     background-color: white;
-
+    position: relative;
 
 }
 
@@ -186,6 +113,25 @@ nav {
     text-align: center;
     background-color: lightgrey;
 }
+
+#list-bar {
+    width: 100%;
+    border: black 1px solid;
+    min-height: 30px;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 50px;
+    width: 90%;
+    margin-left: 5%;
+
+    margin-top: 5px;
+}
+
+#bar-title {
+    margin-left: 20px;
+}
+
+
 
 /*---------------------Footer-------------------------*/
 footer {
@@ -257,13 +203,23 @@ footer {
 }
 
 .add-event {
-    height: 500px;
-    width: 400px;
-    bottom: -500px;
-    right: 0;
+    height: 50%;
+    width: 500px;
+    top: 25%;
+    right: calc(50% - 250px);
+    left: calc(50% - 250px);
     position: absolute;
     transition: 0.6s;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    z-index: 30;
+    background-color: lightgrey;
+    border: black solid 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+
 }
 
 .add-event.active {
@@ -272,21 +228,49 @@ footer {
 }
 
 .event-form {
-    background-color: orange;
+    background-color: white;
+    height: 90%;
+    width: 90%;
+    border-radius: 30px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
 }
 
-.add-event label {
-    color: black;
+.event-form > * {
+    margin-top: 10px;
 }
+
+.event-form label {
+    min-width: 140px;
+}
+
+
 
 #add-event-title {
     color: black;
+    text-align: center;
+    font-size: 1.2em;
 }
 
-#add-and-cancel {
+#form-cancel-and-add {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
+    position: absolute;
+    width: 90%;
+    bottom: 20px;
+
+}
+#form-cancel-and-add > * {
+    width: 120px;
+    height: 50px;
+    border-radius: 30px;
+    border: black 1px solid;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
 }
 
 /*---------------------event-bar-start-------------------------*/
@@ -343,6 +327,21 @@ footer {
     list-style: none;
 }
 
+.plus-sign-button {
+    background-image: url(../images/plus.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    height: 60px;
+    width: 60px;
+    border: red solid 1px;
+    background-color: white;
+    position: absolute;
+    z-index: 35;
+    bottom: 10px;
+    left: 20px;
+    cursor:pointer;
+}
 /* If needed, other classes are event date, event time, and everything under event-attendance up to cap-lates-indicator.*/
 
 /*---------------------event-details-start-------------------------*/
@@ -358,8 +357,9 @@ footer {
     width: 80%;
     height: 300px;
     background-color: lightgray;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 20px;
+    padding: 10px;
 }
 
 #event-detail-attendees {
@@ -367,6 +367,10 @@ footer {
     height: 100px;
     background-color: lightgrey;
     margin-bottom: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 
 }
 
@@ -405,6 +409,10 @@ footer {
         width: 100%;
     }
 
+    #back-window-button{
+        display: none;
+    }
+
     #window-one {
         min-width: 700px;
     }
@@ -418,6 +426,10 @@ footer {
         max-width: 500px;
     }
 
+    #event-detail-attendees {
+        display: none;
+    }
+
     .position-one {
         transform: translateX(0);
     }
@@ -428,12 +440,19 @@ footer {
 
 }
 
+/*---------------------media query for width greater than 700px-------------------------*/
+@media screen and (min-width:1700px) {
+    #content-windows {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /*------------------------------attendees.html----------------------------*/
 #attendee-group-buttons {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    margin: 10px;
 }
 
 #attendee-group-buttons > button {
@@ -446,10 +465,9 @@ footer {
     border-style: solid;
     border-width: thin;
     border-radius: 50px;
+    width: 100%;
 
     margin-top: 5px;
-    margin-left: 3px;
-    margin-right: 3px;
 }
 
 #attendee-name {
