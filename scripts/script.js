@@ -8,11 +8,14 @@ let pageTwoButton = document.getElementById("page-two-button");
 let pageThreeButton = document.getElementById("page-three-button");
 let contentWindows = document.getElementById("content-windows");
 let backWindowButton = document.getElementById("back-window-button");
-backWindowButton.hidden = true;
-let windowPosition = 1;
-
 let addAttendeeForm = document.getElementById("add-attendee-form");
-hideAttendeeForm();
+let windowPosition;
+
+window.addEventListener("load", () => {
+    backWindowButton.hidden = true;
+    windowPositionOne();
+    hideAttendeeForm();
+})
 
 //let upcomingEventButton = document.getElementById("upcoming-events-button")
 
