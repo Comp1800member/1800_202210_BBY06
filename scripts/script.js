@@ -10,10 +10,10 @@ let contentWindows = document.getElementById("content-windows");
 let backWindowButton = document.getElementById("back-window-button");
 backWindowButton.hidden = true;
 let windowPosition = 1;
-let addEventForm = document.getElementById("add-event-form");
+
 let addAttendeeForm = document.getElementById("add-attendee-form");
 hideAttendeeForm();
-hideEventForm();
+
 //let upcomingEventButton = document.getElementById("upcoming-events-button")
 
 //event listeners for pop in menus
@@ -68,12 +68,7 @@ function hideAttendeeForm() {
 function showAttendeeForm() {
     addAttendeeForm.hidden = false;
 }
-function hideEventForm() {
-    addEventForm.hidden = true;
-}
-function showEventForm() {
-    addEventForm.hidden = false;
-}
+
 
 
 

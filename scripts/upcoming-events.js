@@ -3,9 +3,9 @@ let eventWindowOne = document.getElementById("window-one");
 let eventWindowTwo = document.getElementById("window-two");
 let eventWindowThree = document.getElementById("window-three");
 let eventButton = document.getElementById("add-event-button");
-
+let addEventForm = document.getElementById("add-event-form");
 let eventList = db.collection("users").doc("testUser").collection("eventList");
-
+hideEventForm();
 //load event list function
 
 let today = new Date(3 , 1, 2022);
@@ -181,7 +181,10 @@ function displayTime(dateTime) {
     }
 }
 
-eventButton.addEventListener("click", () => {
-    eventAddMenu.classList.toggle("active");
-    console.log("This is add event menu");
-})
+
+function hideEventForm() {
+    addEventForm.hidden = true;
+}
+function showEventForm() {
+    addEventForm.hidden = false;
+}
