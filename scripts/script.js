@@ -38,50 +38,50 @@ pageThreeButton.addEventListener("click", () => {
 
 //load event list function
 
-loadListButton.addEventListener("click", () => {
+// loadListButton.addEventListener("click", () => {
 
 
-    eventList = db.collection("users").doc("testUser").collection("eventList");
-    eventList.get()
-        .then(userDoc => {
-            let upcomingEventTemplate = document.getElementById("upcoming-event-bar-template");
-            let eventTemplate = document.getElementById("event-bar-template");
-            let eventWindowOne = document.getElementById("window-one");
-            console.log(userDoc.docs);
-            console.log("length: " + userDoc.docs.length);
-            console.log("userDoc.docs[1]: " + JSON.stringify(userDoc.docs[1]));
-            console.log(userDoc.docs[1].id);
-            console.log(userDoc.docs[1].data().name);
+//     eventList = db.collection("users").doc("testUser").collection("eventList");
+//     eventList.get()
+//         .then(userDoc => {
+//             let upcomingEventTemplate = document.getElementById("upcoming-event-bar-template");
+//             let eventTemplate = document.getElementById("event-bar-template");
+//             let eventWindowOne = document.getElementById("window-one");
+//             console.log(userDoc.docs);
+//             console.log("length: " + userDoc.docs.length);
+//             console.log("userDoc.docs[1]: " + JSON.stringify(userDoc.docs[1]));
+//             console.log(userDoc.docs[1].id);
+//             console.log(userDoc.docs[1].data().name);
 
-            for (i = 0; i < Number(userDoc.docs.length); i++) {
-                let eventData = userDoc.docs[i].data();
+//             for (i = 0; i < Number(userDoc.docs.length); i++) {
+//                 let eventData = userDoc.docs[i].data();
 
-                console.log("eventData: " + eventData);
+//                 console.log("eventData: " + eventData);
 
-                if (i === 0) {
-                    let newEventBar = upcomingEventTemplate.content.cloneNode(true);
-                    newEventBar.getElementById("event-title").innerHTML = eventData.name;
-                    newEventBar.getElementById("event-date").innerHTML = eventData.date;
-                    newEventBar.getElementById("event-time").innerHTML = eventData.time;
-                    newEventBar.getElementById("event-description").innerHTML = eventData.description;
-                    newEventBar.getElementById("event-capacity").innerHTML = eventData.capacity;
+//                 if (i === 0) {
+//                     let newEventBar = upcomingEventTemplate.content.cloneNode(true);
+//                     newEventBar.getElementById("event-title").innerHTML = eventData.name;
+//                     newEventBar.getElementById("event-date").innerHTML = eventData.date;
+//                     newEventBar.getElementById("event-time").innerHTML = eventData.time;
+//                     newEventBar.getElementById("event-description").innerHTML = eventData.description;
+//                     newEventBar.getElementById("event-capacity").innerHTML = eventData.capacity;
                     
-                    eventWindowOne.appendChild(newEventBar);
+//                     eventWindowOne.appendChild(newEventBar);
 
-                } else {
-                    let newEventBar = eventTemplate.content.cloneNode(true);
-                    newEventBar.getElementById("event-title").innerHTML = eventData.name;
-                    newEventBar.getElementById("event-date").innerHTML = eventData.date;
-                    newEventBar.getElementById("event-time").innerHTML = eventData.time;
-                    newEventBar.getElementById("event-description").innerHTML = eventData.description;
+//                 } else {
+//                     let newEventBar = eventTemplate.content.cloneNode(true);
+//                     newEventBar.getElementById("event-title").innerHTML = eventData.name;
+//                     newEventBar.getElementById("event-date").innerHTML = eventData.date;
+//                     newEventBar.getElementById("event-time").innerHTML = eventData.time;
+//                     newEventBar.getElementById("event-description").innerHTML = eventData.description;
 
-                    eventWindowOne.appendChild(newEventBar);
+//                     eventWindowOne.appendChild(newEventBar);
 
-                }
+//                 }
 
-            }
-        })
-})
+//             }
+//         })
+// })
 
 /*loadUpcomingEventButton.addEventListener("click", () => {
 

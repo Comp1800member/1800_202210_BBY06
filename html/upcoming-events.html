@@ -47,26 +47,12 @@
 
   <div id="content-windows">
     <div id="window-one">
-
     </div>
+
     <div id="window-two">
-      <div id="event-detail-container">
-        <div id="event-detail-box">
-          <h3 id="event-detail-name">Event Name</h3>
-          <h4 id="event-detail-date">Tuesday, March 24</h4>
-          <h4 id="event-detail-time">10:00AM</h4>
-          <h4 id="event-detail-capacity">10:00AM</h4>
-          <h4 id="event-detail-Description">Description</h4>
-        </div>
-        <div id="event-detail-attendees"><h4>See Attendees</h4></div>
-        <div id="event-detail-checkin-code"><h4>Generate Checkin Code</h4>
-          <div id="event-detail-qr-code">code</div>
-        </div>
-
-      </div>
     </div>
-    <div id="window-three">
 
+    <div id="window-three">
     </div>
   </div>
 
@@ -130,7 +116,6 @@
 
 </body>
 
-<<<<<<< HEAD
   <!--Event Bar Template with attendance info - to be dynamically generated-->
   <template id="upcoming-event-bar-template">
     <div class="upcoming-event-bar">
@@ -146,32 +131,7 @@
             <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
             <h4 class="present-number"></h4>
           </div>
-=======
-<!--Event Bar Template with attendance info - to be dynamically generated-->
-<template id="upcoming-event-bar-template">
-  <div class="upcoming-event-bar">
-    <div class="event-title">
-      <h3 id="event-title"></h3>
-      <h4 class="event-date" id="event-date"></h4>
-      <h4 class="event-time" id="event-time"></h4>
-      <h6 id="event-description"></h6>
-    </div>
-    <div class="event-info">
-      <div class="event-attendance">
-        <div class="present-indicator">
-          <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
-          <h4 class="present-number"></h4>
->>>>>>> 99366c9ff9ec8952fdc7f67b20492d6c30150b6b
         </div>
-        <div class="absent-indicator">
-          <img class="absent-indicator-icon" src="../images/person-absent.png" alt="">
-          <h4 class="absent-number"></h4>
-        </div>
-      </div>
-      <div class="cap-lates-indicator">
-        <ul>
-          <li>Capacity: <span id="event-capacity"></span></li>
-        </ul>
       </div>
     </div>
 
@@ -191,6 +151,23 @@
 <template id="basic-bar-template">
   <div id="list-bar">
     <h3 id="bar-title"></h3>
+  </div>
+</template>
+
+<!--Event Details Template-->
+<template id="event-details-template">
+  <div id="event-detail-container">
+    <div id="event-detail-box">
+      <h3 id="event-detail-name">Event Name</h3>
+      <h4 id="event-detail-date">Tuesday, March 24</h4>
+      <h4 id="event-detail-time">10:00AM</h4>
+      <h4 id="event-detail-capacity">10:00AM</h4>
+      <h4 id="event-detail-description">Description</h4>
+    </div>
+    <div id="event-detail-attendees"><h4>See Attendees</h4></div>
+    <div id="event-detail-checkin-code"><h4>Generate Checkin Code</h4>
+      <div id="event-detail-qr-code">GENERATE CODE</div>
+    </div>
   </div>
 </template>
 

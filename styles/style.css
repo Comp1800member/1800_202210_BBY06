@@ -166,7 +166,7 @@ nav {
     height: 100%;
     width: 90vw;
     border: black 2px solid;
-    background-color: lightblue;
+    background-color: white;
 
 
 }
@@ -176,69 +176,18 @@ nav {
     height: 100%;
     width: 90vw;
     border: black 2px solid;
-    background-color: lightblue;
+    background-color: white;
 
 
 }
 
-
-
-/*---------------------event-bar-start-------------------------*/
-
-.upcoming-event-bar {
-    display: flex;
-    flex-direction: row;
-    height: 15em;
-    justify-content: space-between;
+.list-divider {
     width: 100%;
-    border: 2px dotted black;
+    text-align: center;
+    background-color: lightgrey;
 }
 
-.event-bar {
-    border: 2px dotted black;
-}
-
-
-
-.event-title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: 50%;
-}
-
-.event-attendance {
-    display: flex;
-    width: fit-content;
-
-}
-
-.event-info {
-    display: flex;
-    flex-direction: column;
-    border: purple 1px solid;
-    width: 20%;
-
-}
-
-.present-indicator-icon,
-.absent-indicator-icon {
-    height: 50px;
-    width: 50px;
-}
-
-.cap-lates-indicator ul {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.cap-lates-indicator li {
-    list-style: none;
-}
-
-/* If needed, other classes are event date, event time, and everything under event-attendance up to cap-lates-indicator.*/
-/*---------------------event-bar-end-------------------------*/
+/*---------------------Footer-------------------------*/
 footer {
     display: flex;
     justify-content: space-between;
@@ -299,8 +248,10 @@ footer {
     text-decoration: none;
     font-size: 2em;
 }
+/*---------------------------EVENTS---------------------------------*/
+/* includes all event related elements, eventbars, event windows, etc.*/
 
-/*---------------------Add-Event-Start-------------------------*/
+/*---------------------Add-Event-Menu-Start-------------------------*/
 #add-event-button {
     z-index: 16;
 }
@@ -338,8 +289,144 @@ footer {
     justify-content: space-between;
 }
 
-/*---------------------Add-Event-End-------------------------*/
-/*---------------------main.html End I think???????-------------------------*/
+/*---------------------event-bar-start-------------------------*/
+
+.upcoming-event-bar {
+    display: flex;
+    flex-direction: row;
+    height: 15em;
+    justify-content: space-between;
+    width: 100%;
+    border: 2px dotted black;
+}
+
+.event-bar {
+    border: 2px dotted black;
+}
+
+
+
+.event-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 50%;
+}
+
+.event-attendance {
+    display: flex;
+    width: fit-content;
+
+}
+
+.event-info {
+    display: flex;
+    flex-direction: column;
+    border: purple 1px solid;
+    width: 20%;
+
+}
+
+.present-indicator-icon,
+.absent-indicator-icon {
+    height: 50px;
+    width: 50px;
+}
+
+.cap-lates-indicator ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cap-lates-indicator li {
+    list-style: none;
+}
+
+/* If needed, other classes are event date, event time, and everything under event-attendance up to cap-lates-indicator.*/
+
+/*---------------------event-details-start-------------------------*/
+
+#event-detail-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#event-detail-box {
+    width: 80%;
+    height: 300px;
+    background-color: lightgray;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+#event-detail-attendees {
+    width: 80%;
+    height: 100px;
+    background-color: lightgrey;
+    margin-bottom: 20px;
+
+}
+
+#event-detail-checkin-code {
+    width: 80%;
+    height: 400px;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#event-detail-qr-code {
+    width: 90%;
+    height: 85%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*---------------------media query for width greater than 700px-------------------------*/
+
+@media screen and (min-width:700px) {
+    #navbar-list {
+        display: flex;
+    }
+
+    #hamburger-menu-button {
+        display: none;
+    }
+
+    #content-windows {
+        width: 100%;
+    }
+
+    #window-one {
+        min-width: 700px;
+    }
+
+    #window-two {
+        min-width: 500px;
+        max-width: 500px;
+    }
+    #window-three {
+        min-width: 500px;
+        max-width: 500px;
+    }
+
+    .position-one {
+        transform: translateX(0);
+    }
+
+    .position-two {
+        transform: translateX(0);
+    }
+
+}
 
 /*------------------------------attendees.html----------------------------*/
 #attendee-group-buttons {
@@ -391,31 +478,3 @@ footer {
     padding-left: 10px;
 }
 
-/*---------------------media query for width greater than 700px-------------------------*/
-
-@media screen and (min-width:700px) {
-    #navbar-list {
-        display: flex;
-    }
-
-    #hamburger-menu-button {
-        display: none;
-    }
-
-    #content-windows {
-        width: 100%;
-    }
-
-    #window-one {
-        min-width: 700px;
-    }
-
-    .position-one {
-        transform: translateX(0);
-    }
-
-    .position-two {
-        transform: translateX(0);
-    }
-
-}
