@@ -311,7 +311,7 @@ footer {
     bottom: -500px;
     right: 0;
     position: absolute;
-    transition: 0.6s;
+    transition: 0s;
     text-align: center;
 }
 
