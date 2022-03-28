@@ -62,11 +62,10 @@
     <button id="page-one-button">page1</button>
     <button id="page-two-button">page2</button>
     <button id="page-three-button">page3</button>
-    <button id="add-event-button">Add Event</button>
     <div>
-    <input id="delete-event-input" type="text" placeholder="event-to-delete">
-    <button id="delete-event-button">Delete</button>
-  </div>
+      <input type="text" id="delete-event-input" placeholder="event-to-delete">
+      <button id="delete-event-button">Delete</button>
+    </div>
   </footer>
   <div class="hamburger-menu">
     <ul>
@@ -121,7 +120,7 @@
 
       <div id="form-cancel-and-add">
         <p onclick="hideEventForm()">Cancel</p>
-        <p id="add-event-submit-button" >Add</p>
+        <p id="add-event-submit-button" onclick="hideEventForm()">Add</p>
       </div>
     </form>
   </div>
