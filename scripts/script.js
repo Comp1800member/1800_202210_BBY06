@@ -9,6 +9,7 @@ let pageThreeButton = document.getElementById("page-three-button");
 let contentWindows = document.getElementById("content-windows");
 let backWindowButton = document.getElementById("back-window-button");
 let addAttendeeForm = document.getElementById("add-attendee-form");
+let logOutButton = document.getElementById("log-out-button");
 let windowPosition;
 
 window.addEventListener("load", () => {
@@ -72,7 +73,10 @@ function showAttendeeForm() {
     addAttendeeForm.hidden = false;
 }
 
-
-
-
-
+logOutButton.addEventListener("click", () => {
+    firebase.auth().signOut().then(() => {
+        window.location.href = "login.html";
+    }).catch((error) => {
+        console.log("Sign out unsuccessful");
+    })
+})
