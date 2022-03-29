@@ -5,12 +5,13 @@ let eventWindowThree = document.getElementById("window-three");
 let eventButton = document.getElementById("add-event-button");
 let addEventForm = document.getElementById("add-event-form");
 let eventList = db.collection("users").doc("testUser").collection("eventList");
-hideEventForm();
+
 //load event list function
 
 let today = new Date(3 , 1, 2022);
 
 window.addEventListener("load", loadUpcomingEvents);
+window.addEventListener("load", hideEventForm);
 
 //loads upcoming events on the page//
 function loadUpcomingEvents () {
@@ -125,13 +126,11 @@ function loadEventDetails (eventDoc) {
             if(userDoc.size == 0) {
                 let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
                 newAttendeeBar.getElementById("bar-title").innerHTML = "No attendees have checked in.";
-
                 eventWindowThree.appendChild(newAttendeeBar);
             } else {
                 userDoc.forEach( attendee => {
                     let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
                     newAttendeeBar.getElementById("bar-title").innerHTML = attendee.data().firstname + " " + attendee.data().lastname;
-    
                     eventWindowThree.appendChild(newAttendeeBar);
                 })
             }
@@ -142,10 +141,8 @@ function loadEventDetails (eventDoc) {
             eventWindowThree.appendChild(newAddEventButton);
             
         })
-
 //generateQRCode();
 windowPositionTwo();
-
 }
 
 function generateQRCode () {

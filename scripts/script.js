@@ -17,14 +17,11 @@ window.addEventListener("load", () => {
     hideAttendeeForm();
 })
 
-//let upcomingEventButton = document.getElementById("upcoming-events-button")
-
 //event listeners for pop in menus
 hamburgerButton.addEventListener("click", () => {
     hamburgerMenu.classList.toggle("active");
     console.log("This is hamburger menu");
 })
-
 
 
 //event listeners for scrolling the content windows to the left and right
@@ -44,14 +41,12 @@ function windowPositionTwo () {
     contentWindows.classList.remove("position-two");
     backWindowButton.hidden = false;
     windowPosition = 2;
-
 }
 
 function windowPositionThree () {
     contentWindows.classList.add("position-two");
     backWindowButton.hidden = false;
     windowPosition = 3;
-
 }
 
 backWindowButton.addEventListener("click", () => {
