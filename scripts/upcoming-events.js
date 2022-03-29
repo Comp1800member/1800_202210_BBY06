@@ -1,3 +1,16 @@
+var currentUser;
+
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        currentUser = db.collection("users").doc(user.uid); //global
+        console.log("user is logged in");
+    } else {
+        // No user is signed in.
+        console.log("No user is signed in");
+        window.location.href = "login.html";
+    }
+});
+
 //window selectors//
 let eventWindowOne = document.getElementById("window-one");
 let eventWindowTwo = document.getElementById("window-two");
@@ -7,7 +20,6 @@ let addEventForm = document.getElementById("add-event-form");
 let eventList = db.collection("users").doc("testUser").collection("eventList");
 
 //load event list function
-
 let today = new Date(3 , 1, 2022);
 
 window.addEventListener("load", loadUpcomingEvents);
