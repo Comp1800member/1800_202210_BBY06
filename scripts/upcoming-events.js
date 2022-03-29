@@ -1,9 +1,12 @@
 var currentUser;
+var userId;
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("users").doc(user.uid); //global
-        console.log("user is logged in");
+        userId = user.uid;
+        console.log("user " + user.uid + " is logged in");
+        console.log(userId);
     } else {
         // No user is signed in.
         console.log("No user is signed in");
@@ -27,7 +30,7 @@ window.addEventListener("load", hideEventForm);
 
 //loads upcoming events on the page//
 function loadUpcomingEvents () {
-
+    console.log(userId);
     eventList
         .where("dateTime", ">=", today )
         .orderBy("dateTime")
