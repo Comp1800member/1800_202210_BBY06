@@ -39,6 +39,9 @@ function loadAllAttendees() {
   while (eventWindowTwo.firstChild) {
     eventWindowTwo.removeChild(eventWindowTwo.firstChild);
   }
+  while (eventWindowThree.firstChild) {
+    eventWindowThree.removeChild(eventWindowThree.firstChild);
+  }
 
   let windowTwoHeader = document.createElement("h4");
   windowTwoHeader.innerHTML = "All Attendees";
@@ -49,15 +52,14 @@ function loadAllAttendees() {
     userAttendees => {
       let attendeeListTemplate = document.getElementById("attendee-bar-template");
 
-
-      for (i = 0; i < Number(userAttendees.docs.length); i++) {
-        let attendeeInfo = userAttendees.docs[i].data();
+      userAttendees.forEach(attendee => {
         let newAttendeeList = attendeeListTemplate.content.cloneNode(true);
-
-        newAttendeeList.getElementById("attendee-name").innerHTML = attendeeInfo.firstName + " " + attendeeInfo.lastName;
-        newAttendeeList.querySelector(".attendee-bar").onclick = () => loadAllAttendeeDetails();
+        let firstName = attendee.data().firstName;
+        let lastName = attendee.data().lastName;
+        newAttendeeList.getElementById("attendee-name").innerHTML = firstName + " " + lastName;
+        newAttendeeList.querySelector(".attendee-bar").onclick = () => loadAllAttendeeDetails(firstName, lastName);
         eventWindowTwo.appendChild(newAttendeeList);
-      }
+      })
     }
   );
   windowPositionTwo();
@@ -80,8 +82,9 @@ function loadGroupAttendees(groupID) {
 
       groupAttendees.forEach(attendee => {
         let newAttendeeList = attendeeListTemplate.content.cloneNode(true);
-        newAttendeeList.getElementById("attendee-name").innerHTML = attendee.data().firstName + " " + attendee.data().lastName;
-        newAttendeeList.querySelector(".attendee-bar").onclick = () => loadGroupAttendeeDetails(groupID);
+        let attendeeName = attendee.data().firstName + " " + attendee.data().lastName
+        newAttendeeList.getElementById("attendee-name").innerHTML = attendeeName;
+        newAttendeeList.querySelector(".attendee-bar").onclick = () => loadGroupAttendeeDetails(groupID, attendeeName);
         eventWindowTwo.appendChild(newAttendeeList);
       }
 
@@ -91,10 +94,41 @@ function loadGroupAttendees(groupID) {
   windowPositionTwo();
 }
 
+// Loads all the events that a specified attendee has been present in regardless of grouping//
+function loadAllAttendeeDetails(firstName, lastName) {
 
 
-// Loads all the attendee details on the third window.
-function loadGroupAttendeeDetails(groupID) {
+  while (eventWindowThree.firstChild) {
+    eventWindowThree.removeChild(eventWindowThree.firstChild);
+  }
+
+  let windowThreeHeader = document.createElement("h4");
+      windowThreeHeader.innerHTML = "Events Attended";
+      windowThreeHeader.classList.add("list-divider");
+      eventWindowThree.appendChild(windowThreeHeader);
+
+  db.collection("users").doc("testUser").collection("eventList").where("guestlist", "array-contains", firstName + " " + lastName).get().then(
+    eventlist => {
+      let attendeeListTemplate = document.getElementById("attendee-bar-template");
+      if (eventlist.size === 0) {
+        let newEventList = attendeeListTemplate.content.cloneNode(true);
+        newEventList.getElementById("attendee-name").innerHTML = "This person has not attended any events.";
+        eventWindowThree.appendChild(newEventList);
+      } else {
+        eventlist.forEach(event => {
+          let newEventList = attendeeListTemplate.content.cloneNode(true);
+          let newEventDate = event.data().dateTime.toDate();
+          newEventList.getElementById("attendee-name").innerHTML = event.data().name + "</br>" + displayDate(newEventDate);
+          eventWindowThree.appendChild(newEventList);
+        })
+      }
+    }
+  )
+  windowPositionThree();
+}
+
+// Loads the attendee details about a specified group of events on the third window.
+function loadGroupAttendeeDetails(groupID, name) {
   while (eventWindowThree.firstChild) {
     eventWindowThree.removeChild(eventWindowThree.firstChild);
   }
@@ -104,25 +138,32 @@ function loadGroupAttendeeDetails(groupID) {
       let listTemplate = document.getElementById("attendee-bar-template");
 
       let windowThreeHeader = document.createElement("h4");
-      windowThreeHeader.innerHTML = "Events";
+      windowThreeHeader.innerHTML = groupID + " Events";
       windowThreeHeader.classList.add("list-divider");
       eventWindowThree.appendChild(windowThreeHeader);
 
       groupEvents.forEach(event => {
         let newEventList = listTemplate.content.cloneNode(true);
         let newEventDate = event.data().dateTime.toDate();
-        newEventList.getElementById("attendee-name").innerHTML = event.data().name + " " + displayDate(newEventDate);
+        let isPresent = event.data().guestlist.includes(name);
+        console.log("isPresent: " + isPresent);
+        if(isPresent){
+          newEventList.getElementById("attendee-name").innerHTML = event.data().name + "</br>" + displayDate(newEventDate) + "</br>Attended";
+        } else {
+          newEventList.getElementById("attendee-name").innerHTML = event.data().name + "</br>" + displayDate(newEventDate);
+        }
+
+
         eventWindowThree.appendChild(newEventList);
       })
 
     }
   )
-
-
-
+  windowPositionThree();
 }
 
-function displayDate (date) {
+// Formats the date object into a DD MMM YYYY format//
+function displayDate(date) {
   const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   return month[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();
 }

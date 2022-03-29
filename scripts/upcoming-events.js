@@ -38,7 +38,6 @@ function loadUpcomingEvents () {
             let i = 0;
 
             eventDoc.forEach( doc => {
-                console.log(doc.id);
                 eventData = doc.data();
 
                 if (i === 0) {
@@ -92,7 +91,6 @@ function loadEventDetails (eventDoc) {
     while(eventWindowTwo.firstChild) {
         eventWindowTwo.removeChild(eventWindowTwo.firstChild);
     }
-    console.log("eventDoc: " + eventDoc);
 
     eventList.doc(eventDoc)
         .get()
@@ -103,10 +101,10 @@ function loadEventDetails (eventDoc) {
             windowTwoHeader.classList.add("list-divider");
             eventWindowTwo.appendChild(windowTwoHeader);
 
-            console.log("userDoc.id: " + userDoc.id);
-            console.log("userDoc.data() : " + userDoc.data());
 
             let eventDetailsTemplate = document.getElementById("event-details-template");
+            let attendeeBarTemplate = document.getElementById("basic-bar-template");
+
             let newEventDetails = eventDetailsTemplate.content.cloneNode(true);
 
             newEventDetails.getElementById("event-detail-name").innerHTML = userDoc.data().name;
@@ -116,9 +114,38 @@ function loadEventDetails (eventDoc) {
             newEventDetails.getElementById("event-detail-description").innerHTML = userDoc.data().description;
 
             eventWindowTwo.appendChild(newEventDetails);
-        })
 
-    eventList.doc(eventDoc).collection("guestlist")
+            while(eventWindowThree.firstChild) {
+                eventWindowThree.removeChild(eventWindowThree.firstChild);
+            }
+
+            //creates a header for window 3//
+            let windowThreeHeader = document.createElement("h4");
+            windowThreeHeader.innerHTML = "Attendee List";
+            windowThreeHeader.classList.add("list-divider");
+            eventWindowThree.appendChild(windowThreeHeader);
+
+            if(userDoc.data().guestlist.length == 0) {
+                let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
+                newAttendeeBar.getElementById("bar-title").innerHTML = "No attendees have checked in.";
+                eventWindowThree.appendChild(newAttendeeBar);
+            } else {
+                userDoc.data().guestlist.forEach( attendee => {
+                    console.log("in the forEach: " + attendee);
+                    let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
+                    newAttendeeBar.getElementById("bar-title").innerHTML = attendee;
+                    eventWindowThree.appendChild(newAttendeeBar);
+
+                })
+            }
+
+            
+
+            
+
+        })
+/*
+    eventList.doc(eventDoc)
         .get()
         .then( userDoc => {
             while(eventWindowThree.firstChild) {
@@ -132,17 +159,16 @@ function loadEventDetails (eventDoc) {
             eventWindowThree.appendChild(windowThreeHeader);
 
             let attendeeBarTemplate = document.getElementById("basic-bar-template");
-            console.log("userDoc.size: " + userDoc.size );
 
             //if there are no attendees, the third window will let the user know. If there are attendees, window 3 will list the checked in attendees//
-            if(userDoc.size == 0) {
+            if(userDoc.data().guestlist.length() == 0) {
                 let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
                 newAttendeeBar.getElementById("bar-title").innerHTML = "No attendees have checked in.";
                 eventWindowThree.appendChild(newAttendeeBar);
             } else {
-                userDoc.forEach( attendee => {
+                userDoc.data().guestlist.forEach( attendee => {
                     let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
-                    newAttendeeBar.getElementById("bar-title").innerHTML = attendee.data().firstname + " " + attendee.data().lastname;
+                    newAttendeeBar.getElementById("bar-title").innerHTML = attendee;
                     eventWindowThree.appendChild(newAttendeeBar);
                 })
             }
@@ -152,7 +178,7 @@ function loadEventDetails (eventDoc) {
             newAddEventButton.onclick = () => showAttendeeForm();
             eventWindowThree.appendChild(newAddEventButton);
             
-        })
+        })*/
 //generateQRCode();
 windowPositionTwo();
 }
