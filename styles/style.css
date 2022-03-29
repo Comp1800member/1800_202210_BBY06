@@ -329,6 +329,16 @@ footer {
     list-style: none;
 }
 
+.control-block {
+    width: 600px;
+    min-height: 100px;
+    border: purple dotted 1px;
+    position: fixed;
+    background-color: none;
+    bottom: 0px;
+    z-index: 50;
+}
+
 .plus-sign-button {
     background-image: url(../images/plus.png);
     background-position: center;
@@ -338,7 +348,7 @@ footer {
     width: 60px;
     border: red solid 1px;
     background-color: white;
-    position: absolute;
+    position: relative;
     z-index: 35;
     bottom: 10px;
     left: 20px;
