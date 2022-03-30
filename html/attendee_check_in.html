@@ -27,7 +27,7 @@
     <p id="logo"><b>checkin</b></p>
     <ul id="navbar-list">
       <li>
-        <a href="#" id="upcoming-events-button" href="main.html">Upcoming Events</a>
+        <a id="upcoming-events-button" href="upcoming-events.html">Upcoming Events</a>
       </li>
       <li class="nav-events">
         <a id="attendees-button" href="attendees.html">Attendees</a>
@@ -44,38 +44,29 @@
     </ul>
     <button id="hamburger-menu-button">hamburger</button>
   </nav>
-  
-  <div id="content-windows">
-    <div id="window-one">
-      
-    </div>
-    <div id="window-two">
 
+  <button class="check-in-button">Checkin!</button>
+  <template id="event-bar-template">
+    <div class="event-bar">
+      <h3 id="event-title">Math Class</h3>
+      <h4 class="event-date" id="event-date">March 24 2022</h4>
+      <h4 class="event-time" id="event-time">10:00AM</h4>
+      <h6 id="event-description">Math class at BCIT</h6>
     </div>
-    <div id="window-three">
-
-    </div>
-  </div>
-
+  </template>
   <footer>
     <a id="help-button" href="#">Help</a>
-    <button id="load-events">Load Event List</button>
-    <button id="page-one-button">page1</button>
-    <button id="page-two-button">page2</button>
-    <button id="page-three-button">page3</button>
-    <button id="add-event-button">Add Event</button>
   </footer>
   <div class="hamburger-menu">
     <ul>
-
       <li class="nav-events">
-        <a href="#">Upcoming Events</a>
+        <a href="upcoming-events.html">Upcoming Events</a>
       </li>
       <li class="nav-attendance">
-        <a href="#">Attendees</a>
+        <a href="attendees.html">Attendees</a>
       </li>
       <li class="nav-records">
-        <a href="records.html">Past Events</a>
+        <a href="past-events.html">Past Events</a>
       </li>
       <li class="nav-settings">
         <a href="#">Settings</a>
@@ -91,5 +82,7 @@
   <script src="../scripts/firebaseAPI.js"></script>
   <!--links to individual team member js files-->
   <script src="../scripts/check-in.js"></script>
+  <script src="../scripts/upcoming-events.js"></script>
+  <script src="../scripts/attendee-check-in.js"></script>
 </body>
 </html>

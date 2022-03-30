@@ -62,8 +62,8 @@ function setter() {
   }
 }
 
-function addEvent(inputEventName) {
-  db.collection("users").doc("testUser").collection("eventList").doc(inputEventName).set({
+function addEvent() {
+  db.collection("users").doc("testUser").collection("eventList").doc().set({
       /* Will eventually need to link addEventName(above) to
        input fields in the add Event form and also add details into the document fields with the input form*/
       Name: inputEventName,
@@ -88,7 +88,7 @@ addEventSubmitButton.addEventListener("click", () => {
   || inputEventTime == "") {
     alert("Event name, date, capacity, description, time, and group must not be empty!");
   }
-  addEvent(inputEventName);
+  addEvent();
 })
 //create event button
 
@@ -122,3 +122,7 @@ deleteEventButton.addEventListener("click", () => {
   }
   deleteEvent(eventToDelete);
 })
+
+
+let eventTitle = db.collection("users").doc("testUser").collection("eventList").doc("SwimPractice").get("Name");
+console.log("The event title is" + eventTitle);
