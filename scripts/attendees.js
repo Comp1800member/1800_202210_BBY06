@@ -14,12 +14,12 @@ function loadGroups() {
       let listTemplate = document.getElementById("attendee-bar-template");
 
       let windowOneHeader = document.createElement("h4");
-      windowOneHeader.innerHTML = "Groups";
+      windowOneHeader.innerHTML = "Event Groups";
       windowOneHeader.classList.add("list-divider");
       eventWindowOne.appendChild(windowOneHeader);
 
       let allButton = listTemplate.content.cloneNode(true);
-      allButton.getElementById("attendee-name").innerHTML = "All Attendees";
+      allButton.getElementById("attendee-name").innerHTML = "Show All Attendees";
       allButton.querySelector(".attendee-bar").onclick = () => loadAllAttendees();
       eventWindowOne.appendChild(allButton);
 
@@ -150,7 +150,7 @@ function loadGroupAttendeeDetails(groupID, name) {
         if(isPresent){
           newEventList.getElementById("attendee-name").innerHTML = event.data().name + "</br>" + displayDate(newEventDate) + "</br>Attended";
         } else {
-          newEventList.getElementById("attendee-name").innerHTML = event.data().name + "</br>" + displayDate(newEventDate);
+          newEventList.getElementById("attendee-name").innerHTML = event.data().name + "</br>" + displayDate(newEventDate)  + "</br>Absent";
         }
 
 
