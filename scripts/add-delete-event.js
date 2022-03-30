@@ -4,7 +4,6 @@ firebase.auth().onAuthStateChanged(user => {
   if (user) {
       currentUser = db.collection("users").doc(user.uid); //global
       userId = user.uid;
-      console.log("user " + user.uid + " is logged in");
 
       addEventSubmitButton.addEventListener("click", () => {
         console.log("This is add-event button");
@@ -96,15 +95,15 @@ function setter() {
 }
 
 function addEvent() {
+  let dateTimeString = inputEventDate + "T" + inputEventTime + ":00";
   currentUser.collection("eventList").doc().set({
       /* Will eventually need to link addEventName(above) to
        input fields in the add Event form and also add details into the document fields with the input form*/
-      Name: inputEventName,
-      Date: inputEventDate,
-      Time: inputEventTime,
-      Capacity: inputEventCapacity,
-      Description: inputEventDescription,
-      Group: inputEventGroup
+      name: inputEventName,
+      dateTime: firebase.firestore.Timestamp.fromDate(new Date(dateTimeString)),
+      capacity: inputEventCapacity,
+      description: inputEventDescription,
+      group: inputEventGroup
     }).then(function () {
       console.log("new info added to firestore");
       //window.localStorage.assign("main.html");
@@ -113,6 +112,8 @@ function addEvent() {
       console.log(error);
     })
 }
+
+
 
 // addEventSubmitButton.addEventListener("click", () => {
 //   console.log("This is add-event button");

@@ -4,7 +4,6 @@ var eventList;
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("users").doc(user.uid); //global
-        userId = user.uid;
         console.log("user " + user.uid + " is logged in");
 
         eventList = currentUser.collection("eventList");
@@ -29,7 +28,6 @@ let today = new Date(3 , 1, 2022);
 
 //loads upcoming events on the page//
 function loadUpcomingEvents () {
-    console.log(userId);
     eventList
         .where("dateTime", ">=", today )
         .orderBy("dateTime")
@@ -72,19 +70,13 @@ function loadUpcomingEvents () {
                     eventWindowOne.appendChild(newEventBar);
 
                 }
-
                 i++;
-
-
             })
-
             //append an add-event button to the bottom of window one//
             let newAddEventButton = document.createElement("div");
             newAddEventButton.classList.add("plus-sign-button");
             newAddEventButton.onclick = () => showEventForm();
             eventWindowOne.querySelector(".control-block").appendChild(newAddEventButton);
-
-
         })
     }
 
