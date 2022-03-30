@@ -1,12 +1,14 @@
 var currentUser;
-var userId;
+var eventList;
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("users").doc(user.uid); //global
-        userId = user.uid;
         console.log("user " + user.uid + " is logged in");
-        console.log(userId);
+
+        eventList = currentUser.collection("eventList");
+        loadUpcomingEvents();
+        hideEventForm();
     } else {
         // No user is signed in.
         console.log("No user is signed in");
@@ -20,17 +22,12 @@ let eventWindowTwo = document.getElementById("window-two");
 let eventWindowThree = document.getElementById("window-three");
 let eventButton = document.getElementById("add-event-button");
 let addEventForm = document.getElementById("add-event-form");
-let eventList = db.collection("users").doc("testUser").collection("eventList");
 
 //load event list function
 let today = new Date(3 , 1, 2022);
 
-window.addEventListener("load", loadUpcomingEvents);
-window.addEventListener("load", hideEventForm);
-
 //loads upcoming events on the page//
 function loadUpcomingEvents () {
-    console.log(userId);
     eventList
         .where("dateTime", ">=", today )
         .orderBy("dateTime")
@@ -73,19 +70,19 @@ function loadUpcomingEvents () {
                     eventWindowOne.appendChild(newEventBar);
 
                 }
-
                 i++;
-
-
             })
-
             //append an add-event button to the bottom of window one//
             let newAddEventButton = document.createElement("div");
             newAddEventButton.classList.add("plus-sign-button");
             newAddEventButton.onclick = () => showEventForm();
+<<<<<<< HEAD
             eventWindowOne.appendChild(newAddEventButton);
 
 
+=======
+            eventWindowOne.querySelector(".control-block").appendChild(newAddEventButton);
+>>>>>>> aa0982985234a456a0ccf4d0a77cd6138f31a1ba
         })
     }
 
@@ -138,14 +135,8 @@ function loadEventDetails (eventDoc) {
                     let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
                     newAttendeeBar.getElementById("bar-title").innerHTML = attendee;
                     eventWindowThree.appendChild(newAttendeeBar);
-
                 })
             }
-
-            
-
-            
-
         })
 /*
     eventList.doc(eventDoc)

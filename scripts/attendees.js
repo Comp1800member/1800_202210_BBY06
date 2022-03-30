@@ -1,16 +1,28 @@
+var currentUser;
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+      currentUser = db.collection("users").doc(user.uid); //global
+      console.log("user " + user.uid + " is logged in");
+
+      loadGroups();
+  } else {
+      // No user is signed in.
+      console.log("No user is signed in");
+      window.location.href = "login.html";
+  }
+});
+
 let eventWindowOne = document.getElementById("window-one");
 let eventWindowTwo = document.getElementById("window-two");
 let eventWindowThree = document.getElementById("window-three");
 
-
-window.addEventListener("load", loadGroups);
-
 //Loads the groups of attendees in window one.//
 function loadGroups() {
 
-  db.collection("users").doc("testUser").collection("groups").get().then(
+  currentUser.collection("groups").get().then(
     groupList => {
-
+      console.log("inside load groups");
       let listTemplate = document.getElementById("attendee-bar-template");
 
       let windowOneHeader = document.createElement("h4");
@@ -48,7 +60,7 @@ function loadAllAttendees() {
   windowTwoHeader.classList.add("list-divider");
   eventWindowTwo.appendChild(windowTwoHeader);
 
-  db.collection("users").doc("testUser").collection("attendeeList").orderBy("lastName").get().then(
+  currentUser.collection("attendeeList").orderBy("lastName").get().then(
     userAttendees => {
       let attendeeListTemplate = document.getElementById("attendee-bar-template");
 
@@ -71,7 +83,7 @@ function loadGroupAttendees(groupID) {
     eventWindowTwo.removeChild(eventWindowTwo.firstChild);
   }
 
-  db.collection("users").doc("testUser").collection("attendeeList").where("group", "array-contains", groupID).get().then(
+  currentUser.collection("attendeeList").where("group", "array-contains", groupID).get().then(
     groupAttendees => {
       let attendeeListTemplate = document.getElementById("attendee-bar-template");
 
@@ -107,7 +119,7 @@ function loadAllAttendeeDetails(firstName, lastName) {
       windowThreeHeader.classList.add("list-divider");
       eventWindowThree.appendChild(windowThreeHeader);
 
-  db.collection("users").doc("testUser").collection("eventList").where("guestlist", "array-contains", firstName + " " + lastName).get().then(
+      currentUser.collection("eventList").where("guestlist", "array-contains", firstName + " " + lastName).get().then(
     eventlist => {
       let attendeeListTemplate = document.getElementById("attendee-bar-template");
       if (eventlist.size === 0) {
@@ -132,7 +144,7 @@ function loadGroupAttendeeDetails(groupID, name) {
   while (eventWindowThree.firstChild) {
     eventWindowThree.removeChild(eventWindowThree.firstChild);
   }
-  db.collection("users").doc("testUser").collection("eventList").where("group", "==", groupID).get().then(
+  currentUser.collection("eventList").where("group", "==", groupID).get().then(
     groupEvents => {
 
       let listTemplate = document.getElementById("attendee-bar-template");

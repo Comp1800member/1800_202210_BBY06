@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <!--Firebase Llibraries-->
+  <!--Firebase Libraries-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -18,7 +18,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Main</title>
+  <title>Template</title>
   <link rel="stylesheet" href="./../Styles/style.css">
 </head>
 
@@ -27,7 +27,7 @@
     <p id="logo"><b>checkin</b></p>
     <ul id="navbar-list">
       <li>
-        <a href="#" id="upcoming-events-button" href="main.html">Upcoming Events</a>
+        <a id="upcoming-events-button" href="upcoming-events.html">Upcoming Events</a>
       </li>
       <li class="nav-events">
         <a id="attendees-button" href="attendees.html">Attendees</a>
@@ -39,12 +39,14 @@
         <a id="settings-button" href="settings.html">Settings</a>
       </li>
       <li>
-        <a id="log-out-button">Log Out</a>
+        <a class="log-out-button">Log Out</a>
       </li>
     </ul>
     <button id="hamburger-menu-button">hamburger</button>
   </nav>
+
   <div id="back-window-button"></div>
+  
   <div id="content-windows">
     <div id="window-one">
       
@@ -65,23 +67,23 @@
     <button id="page-three-button">page3</button>
     <button id="add-event-button">Add Event</button>
   </footer>
+  
   <div class="hamburger-menu">
     <ul>
-
       <li class="nav-events">
-        <a href="#">Upcoming Events</a>
+        <a href="upcoming-events.html">Upcoming Events</a>
       </li>
       <li class="nav-attendance">
-        <a href="#">Attendees</a>
+        <a href="attendees.html">Attendees</a>
       </li>
       <li class="nav-records">
-        <a href="records.html">Past Events</a>
+        <a href="past-events.html">Past Events</a>
       </li>
       <li class="nav-settings">
         <a href="#">Settings</a>
       </li>
       <li class="nav-logout">
-        <a href="#">Log Out</a>
+        <a class="log-out-button">Log Out</a>
       </li>
     </ul>
   </div>

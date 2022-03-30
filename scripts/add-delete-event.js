@@ -1,3 +1,35 @@
+var currentUser;
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+      currentUser = db.collection("users").doc(user.uid); //global
+      userId = user.uid;
+
+      addEventSubmitButton.addEventListener("click", () => {
+        console.log("This is add-event button");
+        setter();
+        if (inputEventName == "" || inputEventDate == "" || inputEventCapacity == "" || inputEventDescription == ""
+        || inputEventTime == "") {
+          alert("Event name, date, capacity, description, time, and group must not be empty!");
+        }
+        addEvent();
+      })
+
+      deleteEventButton.addEventListener("click", () => {
+        console.log("This is delete button");
+        deleteSetter();
+        if (eventToDelete == ""){
+          alert("The name of the event that you want to delete must not be empty");
+        }
+        deleteEvent(eventToDelete);
+      })
+  } else {
+      // No user is signed in.
+      console.log("No user is signed in");
+      window.location.href = "login.html";
+  }
+});
+
 //currently no button exists, when html is produced we will create an id for it and link it to this.
 //function is not working, can't figure out why, console logs work, should be accessing proper db
 //adds event listener
@@ -63,6 +95,7 @@ function setter() {
 }
 
 function addEvent() {
+<<<<<<< HEAD:scripts/jonathan.js
   db.collection("users").doc("testUser").collection("eventList").doc().set({
     /* Will eventually need to link addEventName(above) to
      input fields in the add Event form and also add details into the document fields with the input form*/
@@ -76,11 +109,27 @@ function addEvent() {
     console.log("new info added to firestore");
     //window.localStorage.assign("main.html");
   })
+=======
+  let dateTimeString = inputEventDate + "T" + inputEventTime + ":00";
+  currentUser.collection("eventList").doc().set({
+      /* Will eventually need to link addEventName(above) to
+       input fields in the add Event form and also add details into the document fields with the input form*/
+      name: inputEventName,
+      dateTime: firebase.firestore.Timestamp.fromDate(new Date(dateTimeString)),
+      capacity: inputEventCapacity,
+      description: inputEventDescription,
+      group: inputEventGroup
+    }).then(function () {
+      console.log("new info added to firestore");
+      //window.localStorage.assign("main.html");
+    })
+>>>>>>> aa0982985234a456a0ccf4d0a77cd6138f31a1ba:scripts/add-delete-event.js
     .catch(function (error) {
       console.log(error);
     })
 }
 
+<<<<<<< HEAD:scripts/jonathan.js
 addEventSubmitButton.addEventListener("click", () => {
   console.log("This is add-event button");
   setter();
@@ -90,6 +139,19 @@ addEventSubmitButton.addEventListener("click", () => {
   }
   addEvent();
 })
+=======
+
+
+// addEventSubmitButton.addEventListener("click", () => {
+//   console.log("This is add-event button");
+//   setter();
+//   if (inputEventName == "" || inputEventDate == "" || inputEventCapacity == "" || inputEventDescription == ""
+//   || inputEventTime == "") {
+//     alert("Event name, date, capacity, description, time, and group must not be empty!");
+//   }
+//   addEvent(inputEventName);
+// })
+>>>>>>> aa0982985234a456a0ccf4d0a77cd6138f31a1ba:scripts/add-delete-event.js
 //create event button
 
 //delete event stuff down here
@@ -101,7 +163,7 @@ function deleteEvent(eventToDelete) {
 
   console.log("Testing event deletion function");
   eventToDelete.toString();
-  db.collection("users").doc("testUser").collection("eventList").doc(eventToDelete).delete({
+  currentUser.collection("eventList").doc(eventToDelete).delete({
     /* Will eventually need to link addEventName(above) to
      input fields in the add Event form and also add details into the document fields with the input form*/
   }).then(function () {
@@ -114,6 +176,7 @@ function deleteEvent(eventToDelete) {
   // console.log("after delete");
 }
 
+<<<<<<< HEAD:scripts/jonathan.js
 deleteEventButton.addEventListener("click", () => {
   console.log("This is delete button");
   deleteSetter();
@@ -123,3 +186,13 @@ deleteEventButton.addEventListener("click", () => {
   deleteEvent(eventToDelete);
 })
 
+=======
+// deleteEventButton.addEventListener("click", () => {
+//   console.log("This is delete button");
+//   deleteSetter();
+//   if (eventToDelete == ""){
+//     alert("The name of the event that you want to delete must not be empty");
+//   }
+//   deleteEvent(eventToDelete);
+// })
+>>>>>>> aa0982985234a456a0ccf4d0a77cd6138f31a1ba:scripts/add-delete-event.js
