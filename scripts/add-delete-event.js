@@ -1,3 +1,36 @@
+var currentUser;
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+      currentUser = db.collection("users").doc(user.uid); //global
+      userId = user.uid;
+      console.log("user " + user.uid + " is logged in");
+
+      addEventSubmitButton.addEventListener("click", () => {
+        console.log("This is add-event button");
+        setter();
+        if (inputEventName == "" || inputEventDate == "" || inputEventCapacity == "" || inputEventDescription == ""
+        || inputEventTime == "") {
+          alert("Event name, date, capacity, description, time, and group must not be empty!");
+        }
+        addEvent();
+      })
+
+      deleteEventButton.addEventListener("click", () => {
+        console.log("This is delete button");
+        deleteSetter();
+        if (eventToDelete == ""){
+          alert("The name of the event that you want to delete must not be empty");
+        }
+        deleteEvent(eventToDelete);
+      })
+  } else {
+      // No user is signed in.
+      console.log("No user is signed in");
+      window.location.href = "login.html";
+  }
+});
+
 //currently no button exists, when html is produced we will create an id for it and link it to this.
 //function is not working, can't figure out why, console logs work, should be accessing proper db
 //adds event listener
@@ -62,8 +95,8 @@ function setter() {
   }
 }
 
-function addEvent(inputEventName) {
-  db.collection("users").doc("testUser").collection("eventList").doc(inputEventName).set({
+function addEvent() {
+  currentUser.collection("eventList").doc().set({
       /* Will eventually need to link addEventName(above) to
        input fields in the add Event form and also add details into the document fields with the input form*/
       Name: inputEventName,
@@ -81,15 +114,15 @@ function addEvent(inputEventName) {
     })
 }
 
-addEventSubmitButton.addEventListener("click", () => {
-  console.log("This is add-event button");
-  setter();
-  if (inputEventName == "" || inputEventDate == "" || inputEventCapacity == "" || inputEventDescription == ""
-  || inputEventTime == "") {
-    alert("Event name, date, capacity, description, time, and group must not be empty!");
-  }
-  addEvent(inputEventName);
-})
+// addEventSubmitButton.addEventListener("click", () => {
+//   console.log("This is add-event button");
+//   setter();
+//   if (inputEventName == "" || inputEventDate == "" || inputEventCapacity == "" || inputEventDescription == ""
+//   || inputEventTime == "") {
+//     alert("Event name, date, capacity, description, time, and group must not be empty!");
+//   }
+//   addEvent(inputEventName);
+// })
 //create event button
 
 //delete event stuff down here
@@ -101,7 +134,7 @@ function deleteEvent(eventToDelete) {
 
   console.log("Testing event deletion function");
   eventToDelete.toString();
-  db.collection("users").doc("testUser").collection("eventList").doc(eventToDelete).delete({
+  currentUser.collection("eventList").doc(eventToDelete).delete({
     /* Will eventually need to link addEventName(above) to
      input fields in the add Event form and also add details into the document fields with the input form*/
   }).then(function () {
@@ -114,11 +147,11 @@ function deleteEvent(eventToDelete) {
   // console.log("after delete");
 }
 
-deleteEventButton.addEventListener("click", () => {
-  console.log("This is delete button");
-  deleteSetter();
-  if (eventToDelete == ""){
-    alert("The name of the event that you want to delete must not be empty");
-  }
-  deleteEvent(eventToDelete);
-})
+// deleteEventButton.addEventListener("click", () => {
+//   console.log("This is delete button");
+//   deleteSetter();
+//   if (eventToDelete == ""){
+//     alert("The name of the event that you want to delete must not be empty");
+//   }
+//   deleteEvent(eventToDelete);
+// })
