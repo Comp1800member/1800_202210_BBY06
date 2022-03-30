@@ -1,9 +1,14 @@
 var currentUser;
+var eventList;
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("users").doc(user.uid); //global
-        console.log("user is logged in");
+        console.log("user " + user.uid + " is logged in");
+
+        eventList = currentUser.collection("eventList");
+        loadUpcomingEvents();
+        hideEventForm();
     } else {
         // No user is signed in.
         console.log("No user is signed in");
@@ -17,20 +22,16 @@ let eventWindowTwo = document.getElementById("window-two");
 let eventWindowThree = document.getElementById("window-three");
 let eventButton = document.getElementById("add-event-button");
 let addEventForm = document.getElementById("add-event-form");
-let eventList = db.collection("users").doc("testUser").collection("eventList");
 
 //load event list function
 let today = new Date('2022-03-20');
 
-window.addEventListener("load", loadUpcomingEvents);
-window.addEventListener("load", hideEventForm);
-
 //loads upcoming events on the page//
 function loadUpcomingEvents() {
-
+    console.log("Loading past events...");
     eventList
         .where("dateTime", "<", today)
-        .orderBy("dateTime")
+        .orderBy("dateTime", "desc")
         .get()
         .then(eventDoc => {
             let eventTemplate = document.getElementById("event-bar-template");
@@ -51,9 +52,7 @@ function loadUpcomingEvents() {
                 newEventBar.querySelector(".event-bar").onclick = () => loadEventDetails(doc.id);
 
                 eventWindowOne.appendChild(newEventBar);
-
             })
-
         })
 }
 
@@ -111,11 +110,6 @@ function loadEventDetails(eventDoc) {
 
                     })
                 }
-
-
-
-
-
             })
 
     //generateQRCode();

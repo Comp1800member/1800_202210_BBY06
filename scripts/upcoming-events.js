@@ -131,14 +131,8 @@ function loadEventDetails (eventDoc) {
                     let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
                     newAttendeeBar.getElementById("bar-title").innerHTML = attendee;
                     eventWindowThree.appendChild(newAttendeeBar);
-
                 })
             }
-
-            
-
-            
-
         })
 /*
     eventList.doc(eventDoc)
