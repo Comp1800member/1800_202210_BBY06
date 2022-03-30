@@ -64,18 +64,18 @@ function setter() {
 
 function addEvent() {
   db.collection("users").doc("testUser").collection("eventList").doc().set({
-      /* Will eventually need to link addEventName(above) to
-       input fields in the add Event form and also add details into the document fields with the input form*/
-      Name: inputEventName,
-      Date: inputEventDate,
-      Time: inputEventTime,
-      Capacity: inputEventCapacity,
-      Description: inputEventDescription,
-      Group: inputEventGroup
-    }).then(function () {
-      console.log("new info added to firestore");
-      //window.localStorage.assign("main.html");
-    })
+    /* Will eventually need to link addEventName(above) to
+     input fields in the add Event form and also add details into the document fields with the input form*/
+    Name: inputEventName,
+    Date: inputEventDate,
+    Time: inputEventTime,
+    Capacity: inputEventCapacity,
+    Description: inputEventDescription,
+    Group: inputEventGroup
+  }).then(function () {
+    console.log("new info added to firestore");
+    //window.localStorage.assign("main.html");
+  })
     .catch(function (error) {
       console.log(error);
     })
@@ -85,7 +85,7 @@ addEventSubmitButton.addEventListener("click", () => {
   console.log("This is add-event button");
   setter();
   if (inputEventName == "" || inputEventDate == "" || inputEventCapacity == "" || inputEventDescription == ""
-  || inputEventTime == "") {
+    || inputEventTime == "") {
     alert("Event name, date, capacity, description, time, and group must not be empty!");
   }
   addEvent();
@@ -108,21 +108,18 @@ function deleteEvent(eventToDelete) {
     console.log("event deleted from firestore");
     //window.localStorage.assign("main.html");
   })
-  .catch(function (error) {
-    console.log(error);
-  })
+    .catch(function (error) {
+      console.log(error);
+    })
   // console.log("after delete");
 }
 
 deleteEventButton.addEventListener("click", () => {
   console.log("This is delete button");
   deleteSetter();
-  if (eventToDelete == ""){
+  if (eventToDelete == "") {
     alert("The name of the event that you want to delete must not be empty");
   }
   deleteEvent(eventToDelete);
 })
 
-
-let eventTitle = db.collection("users").doc("testUser").collection("eventList").doc("SwimPractice").get("Name");
-console.log("The event title is" + eventTitle);

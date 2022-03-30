@@ -529,3 +529,7 @@ footer {
   margin: 4px 2px;
   border-radius: 15px;
 }
+
+.event-bar{
+    text-align: center;
+}

@@ -83,7 +83,7 @@ function loadUpcomingEvents () {
             let newAddEventButton = document.createElement("div");
             newAddEventButton.classList.add("plus-sign-button");
             newAddEventButton.onclick = () => showEventForm();
-            eventWindowOne.querySelector(".control-block").appendChild(newAddEventButton);
+            eventWindowOne.appendChild(newAddEventButton);
 
 
         })
@@ -91,15 +91,13 @@ function loadUpcomingEvents () {
 
 //generates event details information in the second window//
 function loadEventDetails (eventDoc) {
-
+    while(eventWindowTwo.firstChild) {
+        eventWindowTwo.removeChild(eventWindowTwo.firstChild);
+    }
 
     eventList.doc(eventDoc)
-        .onSnapshot(
-         userDoc => {
-
-            while(eventWindowTwo.firstChild) {
-                eventWindowTwo.removeChild(eventWindowTwo.firstChild);
-            }
+        .get()
+        .then( userDoc => {
 
             let windowTwoHeader = document.createElement("h4");
             windowTwoHeader.innerHTML = "Event Details";
