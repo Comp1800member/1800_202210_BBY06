@@ -9,8 +9,8 @@ window.addEventListener("load", () => {
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        currentUser = db.collection("users").doc(user.uid); //use this line for the actual app
-        // currentUser = db.collection("users").doc("testUser"); //use this line for testing
+        // currentUser = db.collection("users").doc(user.uid); //use this line for the actual app
+        currentUser = db.collection("users").doc("testUser"); //use this line for testing
         console.log("user " + user.uid + " is logged in");
 
         eventList = currentUser.collection("eventList");
