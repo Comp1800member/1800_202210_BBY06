@@ -1,4 +1,4 @@
-//initialize variables
+//initialize variables//
 let hamburgerButton = document.getElementById("hamburger-menu-button");
 let hamburgerMenu = document.querySelector(".hamburger-menu");
 let contentWindows = document.getElementById("content-windows");
@@ -11,14 +11,13 @@ window.addEventListener("load", () => {
     windowPositionOne();
 })
 
-//event listeners for pop in menus
+//event listeners for slide in hamburger menu//
 hamburgerButton.addEventListener("click", () => {
     hamburgerMenu.classList.toggle("active");
     console.log("This is hamburger menu");
 })
 
-
-
+//sliding window positions in mobile view//
 function windowPositionOne () {
     contentWindows.classList.remove("position-one");
     contentWindows.classList.remove("position-two");
@@ -50,8 +49,7 @@ backWindowButton.addEventListener("click", () => {
     }
 });
 
-
-
+//logout button functionality//
 logOutButton.forEach( button => button.addEventListener("click", () => {
     firebase.auth().signOut().then(() => {
         window.location.href = "login.html";

@@ -1,6 +1,4 @@
-var currentUser;
-var eventList;
-
+//Firebase authentication//
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         //currentUser = db.collection("users").doc(user.uid); //global
@@ -8,7 +6,7 @@ firebase.auth().onAuthStateChanged(user => {
         console.log("user " + user.uid + " is logged in");
 
         eventList = currentUser.collection("eventList");
-        loadUpcomingEvents();
+        loadPastEvents();
         hideEventForm();
     } else {
         // No user is signed in.
@@ -17,18 +15,18 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
-//window selectors//
+//On-page element selectors//
 let eventWindowOne = document.getElementById("window-one");
 let eventWindowTwo = document.getElementById("window-two");
 let eventWindowThree = document.getElementById("window-three");
 let eventButton = document.getElementById("add-event-button");
 let addEventForm = document.getElementById("add-event-form");
 
-//load event list function
+//Date setting//
 let today = new Date('2022-03-20');
 
-//loads upcoming events on the page//
-function loadUpcomingEvents() {
+//loads past events on the page//
+function loadPastEvents() {
     console.log("Loading past events...");
     eventList
         .where("dateTime", "<", today)
@@ -60,9 +58,9 @@ function loadUpcomingEvents() {
 //generates event details information in the second window//
 function loadEventDetails(eventDoc) {
 
-
     eventList.doc(eventDoc)
-        .onSnapshot(
+        .get()
+        .then(
             userDoc => {
 
                 while (eventWindowTwo.firstChild) {
@@ -113,16 +111,16 @@ function loadEventDetails(eventDoc) {
                 }
             })
 
-    //generateQRCode();
     windowPositionTwo();
 }
 
-
+//formats the date//
 function displayDate(date) {
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return month[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();
 }
 
+//formats the time//
 function displayTime(dateTime) {
     if (dateTime.getMinutes() < 10) {
         minutes = "0" + dateTime.getMinutes();
@@ -146,7 +144,7 @@ function displayTime(dateTime) {
     }
 }
 
-
+//hides and shows the pop-in add-event form//
 function hideEventForm() {
     addEventForm.hidden = true;
 }

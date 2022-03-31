@@ -1,4 +1,3 @@
-
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
       //currentUser = db.collection("users").doc(user.uid); //global

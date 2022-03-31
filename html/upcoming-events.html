@@ -149,6 +149,7 @@
   <script src="../scripts/firebaseAPI.js"></script>
   <script src="../scripts/upcoming-events.js"></script>
   <script src="../scripts/add-delete-event.js"></script>
+  <script src="../scripts/qrcode.js"></script>
 
 </body>
 
@@ -165,7 +166,7 @@
       <div class="event-attendance">
         <div class="present-indicator">
           <img class="present-indicator-icon" src="../images/person-attended.png" alt="">
-          <h4 class="present-number"></h4>
+          <h4 class="present-number" id="present-number"></h4>
         </div>
       </div>
     </div>
@@ -205,8 +206,22 @@
       <h4>See Attendees</h4>
     </div>
     <div id="event-detail-checkin-code">
-      <h4>Generate Checkin Code</h4>
-      <a id="event-detail-qr-code">GENERATE CODE</a>
+      <h4 id="event-detail-generate-code-button">Generate checkin code</h4>
+      <a id="event-detail-qr-code"></a>
+    </div>
+    <div id="event-detail-group-box">
+      <h3>Group this Event</h3>
+      <h4 id="event-detail-group-status">This event is not grouped.</h4>
+      <h4>Select a group</h4>
+      <select id="dropdown-groups">
+        <option value="Soccer Practice">Soccer Practice</option>
+      </select>
+      <button>Group</button>
+      <h4>Create a new group</h4>
+      <input type="text"><button>Create</button>
+      
+      <input type="checkbox" id="group-attendees-checkbox">
+      <h4>Include attendees into this group</h4>
     </div>
   </div>
 </template>

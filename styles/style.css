@@ -1,6 +1,4 @@
 
-/*---------------------main.html-------------------------*/
-
 /*---------------------window-sizing-------------------------*/
 
 body {
@@ -308,7 +306,6 @@ footer {
 .event-info {
     display: flex;
     flex-direction: column;
-    border: purple 1px solid;
     width: 20%;
 
 }
@@ -407,6 +404,8 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
+
 }
 
 #event-detail-qr-code {
@@ -417,6 +416,12 @@ footer {
     justify-content: center;
     align-items: center;
 
+}
+
+#event-detail-group-box {
+    width: 80%;
+    height: 300px;
+    background-color: lightgrey;
 }
 
 /*---------------------media query for width greater than 700px-------------------------*/

@@ -1,12 +1,24 @@
+//on-page element selectors//
 let addAttendeeForm = document.getElementById("add-attendee-form");
 let addEventSubmitButton = document.getElementById("add-event-submit-button");
 let addAttendeeSubmitButton = document.getElementById("add-attendee-submit-button");
+let eventWindowOne = document.getElementById("window-one");
+let eventWindowTwo = document.getElementById("window-two");
+let eventWindowThree = document.getElementById("window-three");
+let eventButton = document.getElementById("add-event-button");
+let addEventForm = document.getElementById("add-event-form");
 
+//global variables carried through between webpages.//
+var currentUser;
+var eventList;
+
+//on-page load events//
 window.addEventListener("load", () => {
     hideEventForm();
     hideAttendeeForm();
 });
 
+//firebase authentication//
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         // currentUser = db.collection("users").doc(user.uid); //use this line for the actual app
@@ -25,17 +37,10 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
-//window selectors//
-let eventWindowOne = document.getElementById("window-one");
-let eventWindowTwo = document.getElementById("window-two");
-let eventWindowThree = document.getElementById("window-three");
-let eventButton = document.getElementById("add-event-button");
-let addEventForm = document.getElementById("add-event-form");
-
-//load event list function
+//date setting//
 let today = new Date('2022-03-01');
 
-//loads upcoming events on the page//
+//loads upcoming events in window one//
 function loadUpcomingEvents() {
     eventList
         .where("dateTime", ">=", today)
@@ -59,6 +64,7 @@ function loadUpcomingEvents() {
                         newEventBar.getElementById("event-date").innerHTML = displayDate(eventData['dateTime'].toDate());
                         newEventBar.getElementById("event-time").innerHTML = eventData.dateTime.toDate().toLocaleTimeString();
                         newEventBar.getElementById("event-description").innerHTML = eventData.description;
+                        newEventBar.getElementById("present-number").innerHTML = eventData.guestlist.length;
                         //newEventBar.getElementById("event-capacity").innerHTML = eventData.capacity;
                         newEventBar.querySelector(".upcoming-event-bar").onclick = () => loadEventDetails(doc.id);
                         let nextEventLabel = document.createElement("h4");
@@ -123,8 +129,9 @@ function loadEventDetails(eventDoc) {
                 newEventDetails.getElementById("event-detail-capacity").innerHTML = userDoc.data().capacity;
                 newEventDetails.getElementById("event-detail-description").innerHTML = userDoc.data().description;
                 newEventDetails.getElementById("delete-event-button").onclick = () => deleteEvent(userDoc.id);
+                newEventDetails.getElementById("event-detail-generate-code-button").onclick = () => generateQRCode(userDoc.id);
 
-                newEventDetails.querySelector("#event-detail-qr-code").href = "check_in.html?userId=" + currentUser.id + "&eventId=" + userDoc.id;
+                
                 eventWindowTwo.appendChild(newEventDetails);
 
                 while (eventWindowThree.firstChild) {
@@ -154,21 +161,38 @@ function loadEventDetails(eventDoc) {
                 newAddAttendeeButton.onclick = () => showAttendeeForm(userDoc.id);
                 eventWindowThree.appendChild(newAddAttendeeButton);
             })
-
-    //generateQRCode();
     windowPositionTwo();
 }
 
-function generateQRCode() {
-    console.log("QR code generation not yet implemented.");
+//generates a qr code with a link to the checkin page.//
+function generateQRCode(eventID) {
+    let codeBox = document.getElementById("event-detail-qr-code");
+    while (codeBox.firstChild) {
+        codeBox.removeChild(codeBox.firstChild);
+    }
+
+    let code = new QRCode(document.getElementById("event-detail-qr-code"));    
+    code.makeCode("https://www.bcit.ca/");
+
+    //create a button to expand the code on a new window//    
+    /*
+    let largeWindowButton = document.createElement("div");
+    largeWindowButton.innerHTML = "Expand Code";
+    largeWindowButton.addEventListener("click", () => {
+        window.open( "QRWindow.html");
+        
+    });
+    codeBox.appendChild(largeWindowButton);
+    */
 }
 
-
+//formats the date//
 function displayDate(date) {
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return month[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();
 }
 
+//formats the time//
 function displayTime(dateTime) {
     if (dateTime.getMinutes() < 10) {
         minutes = "0" + dateTime.getMinutes();
@@ -192,7 +216,7 @@ function displayTime(dateTime) {
     }
 }
 
-
+//hide and show pop-in forms for adding or removing events/attendees//
 function hideEventForm() {
     addEventForm.hidden = true;
 }
