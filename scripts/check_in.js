@@ -1,3 +1,10 @@
+let params = new URL(window.location.href);
+let userId = params.searchParams.get("userId");
+let eventId = params.searchParams.get("eventId");
+
+console.log(userId);
+console.log(eventId);
+
 let eventTitle = document.getElementById("event-title");
 let eventDescription = document.getElementById("event-description");
 db.collection("users")

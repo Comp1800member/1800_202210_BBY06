@@ -9,8 +9,8 @@ window.addEventListener("load", () => {
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        //currentUser = db.collection("users").doc(user.uid); //use this line for the actual app
-        currentUser = db.collection("users").doc("testUser"); //use this line for testing
+        currentUser = db.collection("users").doc(user.uid); //use this line for the actual app
+        // currentUser = db.collection("users").doc("testUser"); //use this line for testing
         console.log("user " + user.uid + " is logged in");
 
         eventList = currentUser.collection("eventList");
@@ -124,6 +124,7 @@ function loadEventDetails(eventDoc) {
                 newEventDetails.getElementById("event-detail-description").innerHTML = userDoc.data().description;
                 newEventDetails.getElementById("delete-event-button").onclick = () => deleteEvent(userDoc.id);
 
+                newEventDetails.querySelector("#event-detail-qr-code").href = "check_in.html?userId=" + currentUser.id + "&eventId=" + userDoc.id;
                 eventWindowTwo.appendChild(newEventDetails);
 
                 while (eventWindowThree.firstChild) {
