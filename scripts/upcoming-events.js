@@ -1,17 +1,23 @@
-var currentUser;
-var eventList;
+let addAttendeeForm = document.getElementById("add-attendee-form");
+let addEventSubmitButton = document.getElementById("add-event-submit-button");
+let addAttendeeSubmitButton = document.getElementById("add-attendee-submit-button");
+
+window.addEventListener("load", () => {
+    hideEventForm();
+    hideAttendeeForm();
+});
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        //currentUser = db.collection("users").doc(user.uid); //global
-        currentUser = db.collection("users").doc("testUser");
+        //currentUser = db.collection("users").doc(user.uid); //use this line for the actual app
+        currentUser = db.collection("users").doc("testUser"); //use this line for testing
         console.log("user " + user.uid + " is logged in");
 
         eventList = currentUser.collection("eventList");
         addEventSubmitButton.addEventListener("click", addEvent);
+
         loadUpcomingEvents();
-        hideEventForm();
-        
+
     } else {
         // No user is signed in.
         console.log("No user is signed in");
@@ -25,7 +31,6 @@ let eventWindowTwo = document.getElementById("window-two");
 let eventWindowThree = document.getElementById("window-three");
 let eventButton = document.getElementById("add-event-button");
 let addEventForm = document.getElementById("add-event-form");
-
 
 //load event list function
 let today = new Date('2022-03-01');
@@ -92,63 +97,69 @@ function loadUpcomingEvents() {
 
 //generates event details information in the second window//
 function loadEventDetails(eventDoc) {
-    while (eventWindowTwo.firstChild) {
-        eventWindowTwo.removeChild(eventWindowTwo.firstChild);
-    }
+
 
     eventList.doc(eventDoc)
-        .get()
-        .then(userDoc => {
+        .onSnapshot(
+            userDoc => {
 
-            let windowTwoHeader = document.createElement("h4");
-            windowTwoHeader.innerHTML = "Event Details";
-            windowTwoHeader.classList.add("list-divider");
-            eventWindowTwo.appendChild(windowTwoHeader);
+                while (eventWindowTwo.firstChild) {
+                    eventWindowTwo.removeChild(eventWindowTwo.firstChild);
+                }
+                let windowTwoHeader = document.createElement("h4");
+                windowTwoHeader.innerHTML = "Event Details";
+                windowTwoHeader.classList.add("list-divider");
+                eventWindowTwo.appendChild(windowTwoHeader);
 
 
-            let eventDetailsTemplate = document.getElementById("event-details-template");
-            let attendeeBarTemplate = document.getElementById("basic-bar-template");
+                let eventDetailsTemplate = document.getElementById("event-details-template");
+                let attendeeBarTemplate = document.getElementById("basic-bar-template");
 
-            let newEventDetails = eventDetailsTemplate.content.cloneNode(true);
+                let newEventDetails = eventDetailsTemplate.content.cloneNode(true);
 
-            newEventDetails.getElementById("event-detail-name").innerHTML = userDoc.data().name;
-            newEventDetails.getElementById("event-detail-date").innerHTML = displayDate(userDoc.data().dateTime.toDate());
-            newEventDetails.getElementById("event-detail-time").innerHTML = userDoc.data().dateTime.toDate().toLocaleTimeString();
-            newEventDetails.getElementById("event-detail-capacity").innerHTML = userDoc.data().capacity;
-            newEventDetails.getElementById("event-detail-description").innerHTML = userDoc.data().description;
+                newEventDetails.getElementById("event-detail-name").innerHTML = userDoc.data().name;
+                newEventDetails.getElementById("event-detail-date").innerHTML = displayDate(userDoc.data().dateTime.toDate());
+                newEventDetails.getElementById("event-detail-time").innerHTML = userDoc.data().dateTime.toDate().toLocaleTimeString();
+                newEventDetails.getElementById("event-detail-capacity").innerHTML = userDoc.data().capacity;
+                newEventDetails.getElementById("event-detail-description").innerHTML = userDoc.data().description;
+                newEventDetails.getElementById("delete-event-button").onclick = () => deleteEvent(userDoc.id);
 
-            eventWindowTwo.appendChild(newEventDetails);
+                eventWindowTwo.appendChild(newEventDetails);
 
-            while (eventWindowThree.firstChild) {
-                eventWindowThree.removeChild(eventWindowThree.firstChild);
-            }
+                while (eventWindowThree.firstChild) {
+                    eventWindowThree.removeChild(eventWindowThree.firstChild);
+                }
 
-            //creates a header for window 3//
-            let windowThreeHeader = document.createElement("h4");
-            windowThreeHeader.innerHTML = "Attendee List";
-            windowThreeHeader.classList.add("list-divider");
-            eventWindowThree.appendChild(windowThreeHeader);
+                //creates a header for window 3//
+                let windowThreeHeader = document.createElement("h4");
+                windowThreeHeader.innerHTML = "Attendee List";
+                windowThreeHeader.classList.add("list-divider");
+                eventWindowThree.appendChild(windowThreeHeader);
 
-            if (userDoc.data().guestlist.length == 0) {
-                let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
-                newAttendeeBar.getElementById("bar-title").innerHTML = "No attendees have checked in.";
-                eventWindowThree.appendChild(newAttendeeBar);
-            } else {
-                userDoc.data().guestlist.forEach(attendee => {
-                    console.log("in the forEach: " + attendee);
+                if (userDoc.data().guestlist.length == 0) {
                     let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
-                    newAttendeeBar.getElementById("bar-title").innerHTML = attendee;
+                    newAttendeeBar.getElementById("bar-title").innerHTML = "No attendees have checked in.";
                     eventWindowThree.appendChild(newAttendeeBar);
-                })
-            }
-        })
+                } else {
+                    userDoc.data().guestlist.forEach(attendee => {
+                        let newAttendeeBar = attendeeBarTemplate.content.cloneNode(true);
+                        newAttendeeBar.getElementById("bar-title").innerHTML = attendee;
+                        eventWindowThree.appendChild(newAttendeeBar);
+                    })
+                }
+                //append an add-attendee button to the bottom of window three//
+                let newAddAttendeeButton = document.createElement("div");
+                newAddAttendeeButton.classList.add("plus-sign-button");
+                newAddAttendeeButton.onclick = () => showAttendeeForm(userDoc.id);
+                eventWindowThree.appendChild(newAddAttendeeButton);
+            })
 
     //generateQRCode();
     windowPositionTwo();
 }
 
 function generateQRCode() {
-
+    console.log("QR code generation not yet implemented.");
 }
 
 
@@ -186,4 +197,15 @@ function hideEventForm() {
 }
 function showEventForm() {
     addEventForm.hidden = false;
+}
+
+function hideAttendeeForm() {
+    addAttendeeForm.hidden = true;
+
+}
+function showAttendeeForm(docID) {
+    addAttendeeForm.hidden = false;
+    addAttendeeSubmitButton.addEventListener("click", () => {
+        addAttendee(docID);
+    });
 }

@@ -62,13 +62,6 @@
 
   <footer>
     <a id="help-button" href="#">Help</a>
-    <button id="page-one-button">page1</button>
-    <button id="page-two-button">page2</button>
-    <button id="page-three-button">page3</button>
-    <div>
-      <input type="text" id="delete-event-input" placeholder="event-to-delete">
-      <button id="delete-event-button">Delete</button>
-    </div>
   </footer>
 
   <div class="hamburger-menu">
@@ -122,7 +115,7 @@
 
       <div id="form-cancel-and-add">
         <p onclick="hideEventForm()">Cancel</p>
-        <p id="add-event-submit-button" onclick="hideEventForm()">Add</p>
+        <p id="add-event-submit-button">Add</p>
       </div>
     </form>
   </div>
@@ -133,19 +126,19 @@
       <p id="add-event-title">New Attendee</p>
       <div id="attendee-form-first-name">
         <label for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname"><br><br>
+        <input type="text" id="attendee-fname" name="fname"><br><br>
       </div>
       <div id="attendee-form-last-name">
         <label for="fname">Last Name:</label>
-        <input type="text" id="fname" name="fname"><br><br>
+        <input type="text" id="attendee-lname" name="fname"><br><br>
       </div>
       <div id="attendee-form-email">
         <label for="fname">Email:</label>
-        <input type="text" id="fname" name="fname"><br><br>
+        <input type="text" id="attendee-email" name="fname"><br><br>
       </div>
       <div id="form-cancel-and-add">
         <p onclick="hideAttendeeForm()">Cancel</p>
-        <p id="add-attendee-button">Add</p>
+        <p id="add-attendee-submit-button">Add</p>
       </div>
     </form>
   </div>
@@ -206,6 +199,7 @@
       <h4 id="event-detail-time">10:00AM</h4>
       <h4 id="event-detail-capacity">10:00AM</h4>
       <h4 id="event-detail-description">Description</h4>
+      <div id="delete-event-button">Delete Event</div>
     </div>
     <div id="event-detail-attendees" onclick="windowPositionThree()">
       <h4>See Attendees</h4>

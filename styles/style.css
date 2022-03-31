@@ -348,7 +348,7 @@ footer {
     width: 60px;
     border: red solid 1px;
     background-color: white;
-    position: relative;
+    position: absolute;
     z-index: 35;
     bottom: 10px;
     left: 20px;
@@ -372,6 +372,19 @@ footer {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
+}
+
+#delete-event-button {
+    width: 100px;
+    height: 40px;
+    border: black 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#delete-event-button:hover {
+    background-color: red;
 }
 
 #event-detail-attendees {

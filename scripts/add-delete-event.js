@@ -1,4 +1,3 @@
-let addEventSubmitButton = document.getElementById("add-event-submit-button");
 
 
 //--------------------------------Add Event Function------------------------//
@@ -12,7 +11,7 @@ function addEvent() {
 
   if (!inputEventName || !inputEventDate || !inputEventDescription || !inputEventTime) {
     alert("Event name, date, time, and description, must not be empty.");
-    showEventForm();
+    
   } else {
     let dateTimeString = inputEventDate + "T" + inputEventTime + ":00";
     currentUser.collection("eventList").doc().set({
@@ -34,7 +33,6 @@ function addEvent() {
 //--------------------------------Delete Event Function------------------------//
 function deleteEvent(docID) {
 
-  console.log("Testing event deletion function");
   currentUser.collection("eventList").doc(docID).delete({
   }).then(function () {
     console.log("event deleted from firestore");
@@ -44,3 +42,22 @@ function deleteEvent(docID) {
     })
 }
 
+//--------------------------------Add Present Attendees Function------------------------//
+function addAttendee(docID) {
+
+  let attendeeFirstName = document.getElementById("attendee-fname").value;
+  let attendeeLastName = document.getElementById("attendee-lname").value;
+  let attendeeEmail = document.getElementById("attendee-email").value;
+
+  if (!attendeeFirstName || !attendeeLastName) {
+    alert("Attendee first and last name must not be empty.");
+  } else {
+    currentUser.collection("eventList").doc(docID).update({
+      guestlist: firebase.firestore.FieldValue.arrayUnion(attendeeFirstName + " " + attendeeLastName)
+    }).then(function () {
+      console.log("new attendee added to guestlist");
+      hideAttendeeForm();
+    });
+  }
+
+}

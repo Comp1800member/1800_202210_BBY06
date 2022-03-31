@@ -1,4 +1,3 @@
-var currentUser;
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
@@ -23,7 +22,6 @@ function loadGroups() {
 
   currentUser.collection("groups").get().then(
     groupList => {
-      console.log("inside load groups");
       let listTemplate = document.getElementById("attendee-bar-template");
 
       let windowOneHeader = document.createElement("h4");

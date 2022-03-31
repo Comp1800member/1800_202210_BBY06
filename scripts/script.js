@@ -1,21 +1,14 @@
 //initialize variables
 let hamburgerButton = document.getElementById("hamburger-menu-button");
 let hamburgerMenu = document.querySelector(".hamburger-menu");
-let eventAddMenu = document.querySelector(".add-event");
-let loadListButton = document.getElementById("load-events");
-let pageOneButton = document.getElementById("page-one-button");
-let pageTwoButton = document.getElementById("page-two-button");
-let pageThreeButton = document.getElementById("page-three-button");
 let contentWindows = document.getElementById("content-windows");
 let backWindowButton = document.getElementById("back-window-button");
-let addAttendeeForm = document.getElementById("add-attendee-form");
 let logOutButton = document.querySelectorAll(".log-out-button");
 let windowPosition;
 
 window.addEventListener("load", () => {
     backWindowButton.hidden = true;
     windowPositionOne();
-    hideAttendeeForm();
 })
 
 //event listeners for pop in menus
@@ -61,12 +54,7 @@ backWindowButton.addEventListener("click", () => {
     }
 });
 
-function hideAttendeeForm() {
-    addAttendeeForm.hidden = true;
-}
-function showAttendeeForm() {
-    addAttendeeForm.hidden = false;
-}
+
 
 logOutButton.forEach( button => button.addEventListener("click", () => {
     firebase.auth().signOut().then(() => {
