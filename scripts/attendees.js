@@ -180,30 +180,3 @@ function displayDate(date) {
 }
 
 
-// Adding new attendee from Add Attendee form page
-let addAttendeeButton = document.getElementById("add-attendee-button");
-
-addAttendeeButton.addEventListener("click", () => {
-  let first = document.getElementById("firstname").value;
-  let last = document.getElementById("lastname").value;
-  let emailAddress = document.getElementById("email").value;
-
-  if (first == "" || last == "") {
-    alert("First name and last name must not be empty!");
-  } else {
-    attendeesList.add({
-      firstName: first,
-      lastName: last,
-      email: emailAddress
-    }).then(function () {
-      console.log("New Attendee added!");
-      document.getElementById("firstname").value = "";
-      document.getElementById("lastname").value = "";
-      document.getElementById("email").value = "";
-    })
-      .catch(function (error) {
-        console.log(error);
-      })
-  }
-});
-

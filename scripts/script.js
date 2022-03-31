@@ -18,10 +18,6 @@ hamburgerButton.addEventListener("click", () => {
 })
 
 
-//event listeners for scrolling the content windows to the left and right
-pageOneButton.addEventListener("click", windowPositionOne);
-pageTwoButton.addEventListener("click", windowPositionTwo);
-pageThreeButton.addEventListener("click", windowPositionThree);
 
 function windowPositionOne () {
     contentWindows.classList.remove("position-one");
