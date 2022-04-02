@@ -16,16 +16,10 @@ let currentUserAndEvent = db.collection("users").doc(userId).collection("eventLi
 
 // =========FUNCTION DEFINITIONS=========
 
-function hideCheckInForm() {
-    checkInForm.hidden = true;
-}
-
-function showCheckInForm() {
-    checkInForm.hidden = false;
-    checkInSubmit.addEventListener("click", () => {
-        checkIn();
-    });
-}
+checkInSubmit.addEventListener("click", () => {
+    checkIn();
+    logGuestIntoAttendeeList();
+});
 
 function checkIn() {
 
@@ -40,9 +34,45 @@ function checkIn() {
             guestlist: firebase.firestore.FieldValue.arrayUnion(attendeeFirstName + " " + attendeeLastName)
         }).then(function () {
             console.log("new attendee added to guestlist");
-            hideCheckInForm();
         });
     }
+}
+
+function logGuestIntoAttendeeList() {
+    let attendeeFirstName = document.getElementById("attendee-fname").value;
+    let attendeeLastName = document.getElementById("attendee-lname").value;
+    let attendeeEmail = document.getElementById("attendee-email").value;
+
+    let userAttendeeList = db.collection("users").doc(userId).collection("attendeeList");
+
+    userAttendeeList.get()
+        .then((snapshot) => {
+            let isMatch = 0;
+            snapshot.forEach((attendee) => {
+                if (attendee.data().email === attendeeEmail) {
+                    isMatch++;
+                    console.log("This attendee is already in attendee list");
+                } else {
+                    console.log("Hello");
+                }
+            });
+            if(isMatch === 0){
+                userAttendeeList.add({
+                    firstName: attendeeFirstName,
+                    lastName: attendeeLastName,
+                    email: attendeeEmail
+                })
+                .then((docRef) => {
+                    console.log("Logged attendee into attendee list");
+                })
+                .catch((error) => {
+                    console.log("Error in adding attendee into attendee list");
+                })
+            }
+        })
+        .catch(error => {
+            console.log("Error in checking for attendee");
+        });
 }
 
 // =========FUNCTION CALLS=========
@@ -55,11 +85,3 @@ currentUserAndEvent.get()
         console.log("The event description is ", result.data().description);
         eventDescription.innerHTML = result.data().description;
     });
-
-// hides check in form on first load
-hideCheckInForm();
-
-// will give the giant check in button an event listener that starts the process to check in when clicked 
-checkInButton.addEventListener("click", () => {
-    showCheckInForm();
-});
