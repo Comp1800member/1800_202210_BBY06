@@ -323,7 +323,7 @@ footer {
 
 .event-form {
     background-color: white;
-    height: 90%;
+    height: 93%;
     width: 90%;
     border-radius: 30px;
     padding: 30px;
@@ -371,6 +371,10 @@ footer {
     line-height: 50px;
     cursor: pointer;
     font-size: 1.2em;
+}
+
+#form-cancel-and-add *:hover {
+    background-color: var(--tertiary);
 }
 
 /*---------------------event-bar-start-------------------------*/
@@ -549,7 +553,6 @@ footer {
 }
 
 #event-detail-generate-code-button {
-    background-color: var(--accent);
     width: 85%;
     height: 30px;
     border-radius: 10px;
@@ -570,7 +573,25 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
+}
+
+.qr-code-large {
+    width: 700px;
+    height:700px;
+    position: absolute;
+    top: calc(50% - 350px);
+    right:calc(50% - 350px);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-code-large img {
+    width: 90%;
+    height: 90%;
 }
 
 #event-detail-group-box {

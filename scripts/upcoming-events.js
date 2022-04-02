@@ -166,24 +166,33 @@ function loadEventDetails(eventDoc) {
 
 //generates a qr code with a link to the checkin page.//
 function generateQRCode(eventID) {
+    let largeCodeBox = document.createElement("div");
+    largeCodeBox.classList.add("qr-code-large");
+    largeCodeBox.onclick = () => {largeCodeBox.hidden = true};
+    contentWindows.appendChild(largeCodeBox);
+    largeCodeBox.hidden = true;
+
     let codeBox = document.getElementById("event-detail-qr-code");
     while (codeBox.firstChild) {
         codeBox.removeChild(codeBox.firstChild);
     }
 
-    let code = new QRCode(document.getElementById("event-detail-qr-code"));    
-    code.makeCode("https://www.bcit.ca/");
+    let codeSmall = new QRCode(document.getElementById("event-detail-qr-code"));    
+    let codeLarge = new QRCode(largeCodeBox);    
+    let checkinUrl = "https://www.bcit.ca/";
+    codeSmall.makeCode(checkinUrl);
+    codeLarge.makeCode(checkinUrl);
 
     //create a button to expand the code on a new window//    
-    /*
-    let largeWindowButton = document.createElement("div");
-    largeWindowButton.innerHTML = "Expand Code";
-    largeWindowButton.addEventListener("click", () => {
-        window.open( "QRWindow.html");
+    
+    
+    codeBox.addEventListener("click", () => {
+        largeCodeBox.hidden = false;
         
     });
+    
     codeBox.appendChild(largeWindowButton);
-    */
+    
 }
 
 //formats the date//

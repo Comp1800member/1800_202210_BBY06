@@ -20,65 +20,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Event Check In</title>
-  <link rel="stylesheet" href="./../Styles/style.css">
+  <link rel="stylesheet" href="./../Styles/checkin-page.css">
 </head>
 
 <body>
   <nav>
-    <p id="logo"><b>checkin</b></p>
-    <!-- <ul id="navbar-list">
-      <li>
-        <a id="upcoming-events-button" href="upcoming-events.html">Upcoming Events</a>
-      </li>
-      <li class="nav-events">
-        <a id="attendees-button" href="attendees.html">Attendees</a>
-      </li>
-      <li>
-        <a id="past-events-button" href="past-events.html">Past Events</a>
-      </li>
-      <li>
-        <a id="settings-button" href="settings.html">Settings</a>
-      </li>
-      <li>
-        <a id="log-out-button">Log Out</a>
-      </li>
-    </ul>
-    <button id="hamburger-menu-button">hamburger</button> -->
+    <p id="logo"><b>checkin</b></p>  
   </nav>
 
-  <button id="check-in-button">Checkin!</button>
-  
-  <div class="event-bar">
-    <h3 id="event-title"></h3>
-    <p id="event-description"></p>
-  </div>
-
-  <footer>
-    <a id="help-button" href="#">Help</a>
-  </footer>
-  <div class="hamburger-menu">
-    <ul>
-      <li class="nav-events">
-        <a href="upcoming-events.html">Upcoming Events</a>
-      </li>
-      <li class="nav-attendance">
-        <a href="attendees.html">Attendees</a>
-      </li>
-      <li class="nav-records">
-        <a href="past-events.html">Past Events</a>
-      </li>
-      <li class="nav-settings">
-        <a href="#">Settings</a>
-      </li>
-      <li class="nav-logout">
-        <a href="#">Log Out</a>
-      </li>
-    </ul>
-  </div>
 
   <div id="check-in-form" class="add-event">
     <form class="event-form">
-      <p id="add-event-title">Check In</p>
+      <p id="add-event-title">Check In<span id="event-name"></span></p>
       <div id="attendee-form-first-name">
         <label for="fname">First Name:</label>
         <input type="text" id="attendee-fname" name="fname"><br><br>
@@ -92,18 +45,14 @@
         <input type="text" id="attendee-email" name="fname"><br><br>
       </div>
       <div id="form-cancel-and-add">
-        <p onclick="hideCheckInForm()">Cancel</p>
         <p id="check-in-submit-button">Check In</p>
       </div>
     </form>
   </div>
 
-  <!-- <script src="../scripts/script.js"></script> -->
   <script src="../scripts/authentication.js"></script>
   <script src="../scripts/firebaseAPI.js"></script>
-  <!--links to individual team member js files-->
   <script src="../scripts/check_in.js"></script>
-  <!-- <script src="../scripts/upcoming-events.js"></script> -->
 </body>
 
 </html>
