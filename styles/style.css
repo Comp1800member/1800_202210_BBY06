@@ -1,9 +1,26 @@
+/*------------------Colour-Variables-------------------------*/
+:root {
+    --primary: #88C399;
+    --secondary: #c5ddcc;
+    --tertiary: #FFD180;
+    --background: #white;
+    --accent: #FFFFB1;
+    --selection: #acbdb1;
 
+
+}
+
+/*-------------------Font import----------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
 /*---------------------window-sizing-------------------------*/
 
 body {
     overflow:hidden;
     min-height: 700px;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
 }
 
 /*---------------------navbar-------------------------*/
@@ -14,13 +31,24 @@ nav {
     position: relative;
     height: 100px;
     width: 100%;
-    background-color: lightblue;
+    background-color: var(--primary);
     align-items: center;
+    
+    
 }
+
 
 #logo {
     font-size: 3em;
     margin-left: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+#logo img {
+    height: 60px;
+    width: 60px;
 }
 
 #navbar-list {
@@ -28,15 +56,20 @@ nav {
     list-style: none;
     justify-content: space-between;
     width: 50%;
-    margin-left: 1em;
+    margin-left: 1.2em;
     white-space: nowrap;
+    padding-top: 15px;
 }
 
 #navbar-list a {
     color: black;
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-decoration: none;
-    margin-right: 1em;
+    margin-right: 1.2em;
+}
+
+#navbar-list a:hover {
+    border-bottom: black 1px solid;
 }
 
 /*---------------------content-window-------------------------*/
@@ -46,7 +79,6 @@ nav {
     display: flex;
     overflow: auto;
     width: 280%;
-    border: black 2px solid;
     transition: 0.2s;
     position: relative;
 }
@@ -56,7 +88,7 @@ nav {
     min-height: 600px;
     min-width: 20vw;
     z-index: 30;
-    background-color:rgba(220, 220, 220, 0.8);
+    background-color:rgba(255, 255, 255, 0.4);
     position: fixed;
     top: 100px;
     left: 0;
@@ -83,7 +115,6 @@ nav {
     overflow: auto;
     height: 100%;
     min-width: 100vw;
-    border: black 2px solid;
     background-color: white;
     position: relative;
 
@@ -93,7 +124,6 @@ nav {
     overflow: auto;
     height: 100%;
     width: 90vw;
-    border: black 2px solid;
     background-color: white;
     position: relative;
 
@@ -103,7 +133,6 @@ nav {
     overflow: auto;
     height: 100%;
     width: 90vw;
-    border: black 2px solid;
     background-color: white;
     position: relative;
 
@@ -112,24 +141,24 @@ nav {
 .list-divider {
     width: 100%;
     text-align: center;
-    background-color: lightgrey;
+    background-color: none;
+    height: 50px;
+    line-height: 50px;
 }
 
 #list-bar {
-    width: 100%;
-    border: black 1px solid;
-    min-height: 30px;
-    border-style: solid;
-    border-width: thin;
-    border-radius: 50px;
-    width: 90%;
-    margin-left: 5%;
-
-    margin-top: 5px;
+    width: 85%;
+    background-color: var(--secondary);
+    min-height: 40px;
+    border-radius: 10px;
+    margin-left: 2%;
+    margin-bottom: 5px;
 }
 
 #bar-title {
     margin-left: 20px;
+    line-height: 40px;
+
 }
 
 
@@ -141,7 +170,7 @@ footer {
     position: relative;
     height: 100px;
     width: 100%;
-    background-color: lightblue;
+    background-color: var(--primary);
     align-items: center;
 }
 
@@ -158,16 +187,22 @@ footer {
     right: 30px;
     top: 20px;
     z-index: 17;
+    background-image: url(../images/hamburger.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    height: 60px;
+    width: 60px;
 }
 
 .hamburger-menu {
     height: 100vh;
-    width: 500px;
-    background-color: white;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
     z-index: 16;
     position: absolute;
     top: 0;
-    right: -500px;
+    right: -400px;
     transition: 0.5s;
 }
 
@@ -180,7 +215,9 @@ footer {
     flex-direction: column;
     height: 80%;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 100px;
+    padding-left: 50px;
 }
 
 .hamburger-menu li {
@@ -203,9 +240,9 @@ footer {
 
 .add-event {
     height: 50%;
-    min-height: 500px;
+    min-height: 700px;
     width: 500px;
-    top: 25%;
+    top: 20%;
     right: calc(50% - 250px);
     left: calc(50% - 250px);
     position: absolute;
@@ -213,8 +250,7 @@ footer {
     display: flex;
     flex-direction: column;
     z-index: 30;
-    background-color: lightgrey;
-    border: black solid 1px;
+    background-color: var(--primary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -241,10 +277,15 @@ footer {
 
 .event-form > * {
     margin-top: 10px;
+    
+}
+
+.event-form input {
+    height: 40px;
 }
 
 .event-form label {
-    min-width: 140px;
+    min-width: 150px;
 }
 
 
@@ -267,10 +308,11 @@ footer {
     width: 120px;
     height: 50px;
     border-radius: 30px;
-    border: black 1px solid;
+    background-color: var(--accent);
     text-align: center;
     line-height: 50px;
     cursor: pointer;
+    font-size: 1.2em;
 }
 
 /*---------------------event-bar-start-------------------------*/
@@ -280,14 +322,29 @@ footer {
     flex-direction: row;
     height: 15em;
     justify-content: space-between;
-    width: 100%;
-    border: 2px dotted black;
+    width: 90%;
+    background-color: var(--secondary);
+    border-radius: 30px;
+    padding: 30px;
+    margin-left: 5%;
+
+
 }
 
 .event-bar {
-    border: 2px dotted black;
+    background-color: var(--secondary);
+    border-radius: 30px;
+    padding: 30px;
+    margin-bottom: 10px;
+    width: 90%;
+    margin-left: 5%;
+
+
 }
 
+.upcoming-event-bar:hover, .event-bar:hover {
+    background-color: var(--selection);
+}
 
 
 .event-title {
@@ -299,7 +356,12 @@ footer {
 
 .event-attendance {
     display: flex;
+    flex-direction: row;
     width: fit-content;
+
+}
+.present-indicator {
+    display: flex;
 
 }
 
@@ -310,8 +372,7 @@ footer {
 
 }
 
-.present-indicator-icon,
-.absent-indicator-icon {
+.present-indicator-icon {
     height: 50px;
     width: 50px;
 }
@@ -326,30 +387,26 @@ footer {
     list-style: none;
 }
 
-.control-block {
-    width: 600px;
-    min-height: 100px;
-    border: purple dotted 1px;
-    position: fixed;
-    background-color: none;
-    bottom: 0px;
-    z-index: 50;
-}
 
 .plus-sign-button {
-    background-image: url(../images/plus.png);
+    background-image: url(../images/add_black_24dp.svg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 50px 50px;
-    height: 60px;
-    width: 60px;
-    border: red solid 1px;
-    background-color: white;
+    background-size: 40px 40px;
+    height: 50px;
+    width: 50px;
+    background-color: var(--accent);
+    border-radius: 30px;
     position: absolute;
     z-index: 35;
     bottom: 10px;
     left: 20px;
     cursor:pointer;
+}
+
+.plus-sign-button:hover {
+    background-color: var(--tertiary);
+
 }
 /* If needed, other classes are event date, event time, and everything under event-attendance up to cap-lates-indicator.*/
 
@@ -363,43 +420,68 @@ footer {
 }
 
 #event-detail-box {
-    width: 80%;
-    height: 300px;
-    background-color: lightgray;
-    margin-top: 20px;
+    width: 85%;
+    min-height: 300px;
+    background-color: var(--secondary);
+    margin-top: 0px;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 30px;
+    border-radius: 30px;
+    position: relative;
+}
+
+#event-detail-name {
+    width: 80%;
+    text-decoration: underline;
 }
 
 #delete-event-button {
-    width: 100px;
-    height: 40px;
-    border: black 1px solid;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent);
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding: 5px;
+}
+#delete-event-button img {
+    width: 40px;
+    height: 40px;
 }
 
 #delete-event-button:hover {
-    background-color: red;
+    background-color: var(--tertiary);
 }
 
 #event-detail-attendees {
-    width: 80%;
+    width: 85%;
     height: 100px;
-    background-color: lightgrey;
+    background-color: var(--accent);
     margin-bottom: 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    border-radius: 30px;
+
+
+}
+
+#event-detail-attendees:hover {
+    background-color: var(--tertiary);
 
 }
 
 #event-detail-checkin-code {
-    width: 80%;
+    width: 85%;
     height: 400px;
-    background-color: lightgrey;
+    background-color: var(--secondary);
+    border-radius: 30px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -408,10 +490,25 @@ footer {
 
 }
 
+#event-detail-generate-code-button {
+    background-color: var(--accent);
+    width: 85%;
+    height: 30px;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#event-detail-generate-code-button:hover {
+    background-color: var(--tertiary);
+    cursor: pointer;
+}
+
 #event-detail-qr-code {
     width: 90%;
     height: 85%;
     background-color: white;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -419,14 +516,20 @@ footer {
 }
 
 #event-detail-group-box {
-    width: 80%;
+    width: 85%;
     height: 300px;
-    background-color: lightgrey;
+    background-color: var(--secondary);
+    padding: 30px;
+    border-radius: 30px;
 }
+
 
 /*---------------------media query for width greater than 700px-------------------------*/
 
 @media screen and (min-width:700px) {
+    #content-windows h4{
+        font-size: medium;
+    }
     #navbar-list {
         display: flex;
     }
@@ -492,12 +595,13 @@ footer {
 }
 
 .attendee-bar {
-    border-style: solid;
-    border-width: thin;
-    border-radius: 50px;
-    width: 100%;
-
-    margin-top: 5px;
+    width: 95%;
+    background-color: var(--secondary);
+    min-height: 40px;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-bottom: 5px;
+    line-height: 40px;
 }
 
 #attendee-name {

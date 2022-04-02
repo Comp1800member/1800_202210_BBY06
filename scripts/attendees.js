@@ -162,8 +162,6 @@ function loadGroupAttendeeDetails(groupID, name) {
         } else {
           newEventList.getElementById("attendee-name").innerHTML = event.data().name + "</br>" + displayDate(newEventDate)  + "</br>Absent";
         }
-
-
         eventWindowThree.appendChild(newEventList);
       })
 

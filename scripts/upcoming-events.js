@@ -130,7 +130,7 @@ function loadEventDetails(eventDoc) {
                 newEventDetails.getElementById("event-detail-description").innerHTML = userDoc.data().description;
                 newEventDetails.getElementById("delete-event-button").onclick = () => deleteEvent(userDoc.id);
                 newEventDetails.getElementById("event-detail-generate-code-button").onclick = () => generateQRCode(userDoc.id);
-
+                
                 
                 eventWindowTwo.appendChild(newEventDetails);
 
