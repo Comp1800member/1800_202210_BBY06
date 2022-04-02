@@ -6,6 +6,9 @@
     --background: #white;
     --accent: #FFFFB1;
     --selection: #acbdb1;
+    --window2: #f5f5f5;
+    --window3: #e7e7e7;
+
 
 
 }
@@ -124,7 +127,7 @@ nav {
     overflow: auto;
     height: 100%;
     width: 90vw;
-    background-color: white;
+    background-color: var(--window2);
     position: relative;
 
 }
@@ -133,7 +136,7 @@ nav {
     overflow: auto;
     height: 100%;
     width: 90vw;
-    background-color: white;
+    background-color: var(--window3);
     position: relative;
 
 }
@@ -594,18 +597,24 @@ footer {
     width: 7em;
 }
 
+#window-one .attendee-bar {
+    min-height: 60px;
+
+}
+
 .attendee-bar {
-    width: 95%;
+    width: 90%;
     background-color: var(--secondary);
     min-height: 40px;
     border-radius: 10px;
     margin-left: 5%;
     margin-bottom: 5px;
-    line-height: 40px;
 }
 
 #attendee-name {
-    margin-left: 10px;
+    margin-left: 20px;
+    line-height: 40px;
+
 }
 
 /*----------------------------add-attendee-form.html----------------------------*/
