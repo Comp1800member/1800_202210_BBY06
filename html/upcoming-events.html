@@ -214,15 +214,20 @@
       <h3>Group this Event</h3>
       <h4 id="event-detail-group-status">This event is not grouped.</h4>
       <h4>Select a group</h4>
-      <select id="dropdown-groups">
-        <option value="Soccer Practice">Soccer Practice</option>
-      </select>
-      <button>Group</button>
-      <h4>Create a new group</h4>
-      <input type="text"><button>Create</button>
-      
-      <input type="checkbox" id="group-attendees-checkbox">
-      <h4>Include attendees into this group</h4>
+      <div>
+        <select id="dropdown-groups">
+          <option value="Soccer Practice">Soccer Practice</option>
+        </select>
+        <button>Group</button>
+      </div>
+      <div>
+        <h4>Create a new group</h4>
+        <input type="text"><button>Create</button>
+      </div>
+      <div id="event-detail-attendee-group">
+        <input type="checkbox" id="group-attendees-checkbox">
+        <h4>Include attendees into this group</h4>
+      </div>
     </div>
   </div>
 </template>
