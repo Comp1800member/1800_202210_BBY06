@@ -1,0 +1,19 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "attendeeList",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "group",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "lastName",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
