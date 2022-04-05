@@ -1,12 +1,12 @@
 //Firebase authentication//
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        var currentUser = db.collection("users").doc(user.uid); //global
+        currentUser = db.collection("users").doc(user.uid); //global
         //currentUser = db.collection("users").doc("testUser");
         console.log("user " + user.uid + " is logged in");
 
-        var eventList = currentUser.collection("eventList");
-        loadPastEvents(eventList);
+        eventList = currentUser.collection("eventList");
+        loadPastEvents();
         hideEventForm();
     } else {
         // No user is signed in.
