@@ -3,6 +3,8 @@ let params = new URL(window.location.href);
 let userId = params.searchParams.get("userId");
 let eventId = params.searchParams.get("eventId");
 
+
+
 // elements and buttons from check_in.html
 let eventTitle = document.getElementById("event-title");
 let eventDescription = document.getElementById("event-description");
@@ -12,13 +14,14 @@ let checkInSubmit = document.getElementById("check-in-submit-button");
 
 // the current user (organizer) and current event the attendee is checking in for
 let currentUserAndEvent = db.collection("users").doc(userId).collection("eventList").doc(eventId);
-
+console.log("currentUserAndEvent: " + currentUserAndEvent);
 
 // =========FUNCTION DEFINITIONS=========
 
 checkInSubmit.addEventListener("click", () => {
     checkIn();
     logGuestIntoAttendeeList();
+    
 });
 
 function checkIn() {
@@ -30,10 +33,14 @@ function checkIn() {
     if (!attendeeFirstName || !attendeeLastName) {
         alert("Attendee first and last name must not be empty.");
     } else {
+        console.log("currentUserAndEvent in checkIn(): " + currentUserAndEvent);
         currentUserAndEvent.update({
             guestlist: firebase.firestore.FieldValue.arrayUnion(attendeeFirstName + " " + attendeeLastName)
         }).then(function () {
             console.log("new attendee added to guestlist");
+            checkInSubmit.innerHTML = "Checked In!";
+            checkInSubmit.style.backgroundColor = "orange";
+            
         });
     }
 }
@@ -76,10 +83,10 @@ function logGuestIntoAttendeeList() {
 // =========FUNCTION CALLS=========
 
 // loads event info into .event-bar
-currentUserAndEvent.get()
-    .then(result => {
-        console.log("The event title is", result.data().name);
-        eventTitle.innerHTML = result.data().name;
-        console.log("The event description is ", result.data().description);
-        eventDescription.innerHTML = result.data().description;
-    });
+// currentUserAndEvent.get()
+//     .then(result => {
+//         console.log("The event title is", result.data().name);
+//         eventTitle.innerHTML = result.data().name;
+//         console.log("The event description is ", result.data().description);
+//         eventDescription.innerHTML = result.data().description;
+//     });

@@ -1,12 +1,12 @@
 //Firebase authentication//
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        //currentUser = db.collection("users").doc(user.uid); //global
-        currentUser = db.collection("users").doc("testUser");
+        var currentUser = db.collection("users").doc(user.uid); //global
+        //currentUser = db.collection("users").doc("testUser");
         console.log("user " + user.uid + " is logged in");
 
-        eventList = currentUser.collection("eventList");
-        loadPastEvents();
+        var eventList = currentUser.collection("eventList");
+        loadPastEvents(eventList);
         hideEventForm();
     } else {
         // No user is signed in.
@@ -23,7 +23,7 @@ let eventButton = document.getElementById("add-event-button");
 let addEventForm = document.getElementById("add-event-form");
 
 //Date setting//
-let today = new Date('2022-03-20');
+let today = new Date('2022-04-04');
 
 //loads past events on the page//
 function loadPastEvents() {

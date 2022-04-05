@@ -15,8 +15,21 @@
     font-size: 1.05em;
 }
 
+/*------------------Page Sizing----------------------------*/
+body {
+    min-width: 400px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #logo {
     font-size: 2em;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 #add-event-button {
@@ -24,14 +37,8 @@
 }
 
 .add-event {
-    height: 50%;
-    min-height: 800px;
-    min-width: 500px;
-    top: 10%;
-    right: calc(50% - 250px);
-    left: calc(50% - 250px);
-    position: absolute;
-    transition: 0.6s;
+    min-height: 600px;
+    min-width: 400px;
     display: flex;
     flex-direction: column;
     z-index: 30;
@@ -39,20 +46,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50px;
 
 }
 
-.add-event.active {
-    bottom: -100px;
-    right: 0;
-}
 
 .event-form {
     background-color: white;
-    height: 93%;
-    width: 90%;
-    border-radius: 30px;
+    height: 95%;
+    width: 100%;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -67,12 +68,11 @@
 
 .event-form input {
     height: 40px;
-    border-radius: 10px;
     
 }
 
 .event-form label {
-    min-width: 150px;
+    min-width: 120px;
     font-weight: 600;
 }
 
@@ -81,21 +81,19 @@
 #add-event-title {
     color: black;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
 
 #form-cancel-and-add {
     display: flex;
-    justify-content: space-around;
-    position: absolute;
-    width: 90%;
-    bottom: 20px;
+    justify-content: center;
+    width: 100%;
 
 }
-#form-cancel-and-add > * {
+#check-in-submit-button {
     width: 200px;
     height: 100px;
-    border-radius: 30px;
+    border-radius: 10px;
     background-color: var(--primary);
     text-align: center;
     line-height: 100px;
@@ -103,8 +101,10 @@
     font-size: 1.5em;
     color: white;
     font-weight: 700;
+    margin-top: 30px;
+    border: none;
 }
 
-#form-cancel-and-add *:hover {
+.checked {
     background-color: var(--tertiary);
 }

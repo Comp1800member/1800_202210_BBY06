@@ -9,22 +9,25 @@ let eventButton = document.getElementById("add-event-button");
 let addEventForm = document.getElementById("add-event-form");
 
 //global variables carried through between webpages.//
-var currentUser;
-var eventList;
+//var currentUser;
+//var eventList;
 
+
+hideEventForm();
+hideAttendeeForm();
 //on-page load events//
-window.addEventListener("load", () => {
-    hideEventForm();
-    hideAttendeeForm();
-});
+// window.addEventListener("load", () => {
+//     hideEventForm();
+//     hideAttendeeForm();
+// });
 
 //firebase authentication//
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        // currentUser = db.collection("users").doc(user.uid); //use this line for the actual app
-        currentUser = db.collection("users").doc("testUser"); //use this line for testing
+        currentUser = db.collection("users").doc(user.uid); //use this line for the actual app
+        //currentUser = db.collection("users").doc("testUser"); //use this line for testing
         console.log("user " + user.uid + " is logged in");
-
+        console.log("currentUser.id: " + currentUser.id);
         eventList = currentUser.collection("eventList");
         addEventSubmitButton.addEventListener("click", addEvent);
 
@@ -38,7 +41,7 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 //date setting//
-let today = new Date('2022-03-01');
+let today = new Date('2022-04-05');
 
 //loads upcoming events in window one//
 function loadUpcomingEvents() {
@@ -155,7 +158,7 @@ function loadEventDetails(eventDoc) {
                         eventWindowThree.appendChild(newAttendeeBar);
                     })
                 }
-                //append an add-attendee button to the bottom of window three//
+                //append an add-attendee button to window three//
                 let newAddAttendeeButton = document.createElement("div");
                 newAddAttendeeButton.classList.add("plus-sign-button");
                 newAddAttendeeButton.onclick = () => showAttendeeForm(userDoc.id);
@@ -184,6 +187,7 @@ function generateQRCode(eventID) {
     let checkinUrl = newUrl;
     codeSmall.makeCode(checkinUrl);
     codeLarge.makeCode(checkinUrl);
+    document.getElementById("event-detail-qr-link").setAttribute('href', checkinUrl);
 
     //create a button to expand the code on a new window//    
     
