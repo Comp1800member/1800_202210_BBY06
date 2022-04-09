@@ -1,9 +1,19 @@
+/*
+This document contains the functions to check in attendees into an event.
+This functionality is only present in check_in.html.
+
+Checking in follows two branches of activity. The attendee info is sent to 
+the event guestlist(an array specific to a single event). 
+The attendee info is also sent to the organizer's Attendee List which is the 
+organizer's aggregated list of all past attendees.
+
+*/ 
+
+//-----------------------------------------------------------Get event id and user id from URL------------------------------------------------------------------------//
 // gets params from the url itself
 let params = new URL(window.location.href);
 let userId = params.searchParams.get("userId");
 let eventId = params.searchParams.get("eventId");
-
-
 
 // elements and buttons from check_in.html
 let eventTitle = document.getElementById("event-title");
@@ -16,14 +26,15 @@ let checkInSubmit = document.getElementById("check-in-submit-button");
 let currentUserAndEvent = db.collection("users").doc(userId).collection("eventList").doc(eventId);
 console.log("currentUserAndEvent: " + currentUserAndEvent);
 
-// =========FUNCTION DEFINITIONS=========
-
+//-----------------------------------------------------------Submit button Listener------------------------------------------------------------------------//
+// Checkin button activates the checkin process
 checkInSubmit.addEventListener("click", () => {
     checkIn();
     logGuestIntoAttendeeList();
-    
 });
 
+//-----------------------------------------------------------Check In Attendee to guestlist------------------------------------------------------------------------//
+// sends attendee information to event guestlist.
 function checkIn() {
 
     let attendeeFirstName = document.getElementById("attendee-fname").value;
@@ -45,6 +56,9 @@ function checkIn() {
     }
 }
 
+//-----------------------------------------------------------Check In Attendee to Attendee List------------------------------------------------------------------------//
+// sends attendee information to the organizer's Attendee List
+// this function will not add attendees with emails that already exist in the Attendee List
 function logGuestIntoAttendeeList() {
     let attendeeFirstName = document.getElementById("attendee-fname").value;
     let attendeeLastName = document.getElementById("attendee-lname").value;
@@ -79,14 +93,3 @@ function logGuestIntoAttendeeList() {
             console.log("Error in checking for attendee");
         });
 }
-
-// =========FUNCTION CALLS=========
-
-// loads event info into .event-bar
-// currentUserAndEvent.get()
-//     .then(result => {
-//         console.log("The event title is", result.data().name);
-//         eventTitle.innerHTML = result.data().name;
-//         console.log("The event description is ", result.data().description);
-//         eventDescription.innerHTML = result.data().description;
-//     });

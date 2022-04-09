@@ -1,3 +1,7 @@
+/* This document contains the functions to load content on upcoming-events.html. */
+
+//-----------------------------------------------------------Page Initialization------------------------------------------------------------------------//
+
 //on-page element selectors//
 let addAttendeeForm = document.getElementById("add-attendee-form");
 let addEventSubmitButton = document.getElementById("add-event-submit-button");
@@ -8,20 +12,15 @@ let eventWindowThree = document.getElementById("window-three");
 let eventButton = document.getElementById("add-event-button");
 let addEventForm = document.getElementById("add-event-form");
 
-//global variables carried through between webpages.//
-//var currentUser;
-//var eventList;
+//date setting//
+let today = new Date('2022-04-05');
 
-
+//functions to be excecuted when the page loads//
 hideEventForm();
 hideAttendeeForm();
-//on-page load events//
-// window.addEventListener("load", () => {
-//     hideEventForm();
-//     hideAttendeeForm();
-// });
 
-//firebase authentication//
+//-----------------------------------------------------------Firebase Authentication------------------------------------------------------------------------//
+//checks if the user is logged in//
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("users").doc(user.uid); //use this line for the actual app
@@ -40,10 +39,8 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
-//date setting//
-let today = new Date('2022-04-05');
-
-//loads upcoming events in window one//
+//-----------------------------------------------------------Load Upcoming Events------------------------------------------------------------------------//
+//Reads Firebase Collection "eventList" and outputs all results where the date is the curent date or later.//
 function loadUpcomingEvents() {
     eventList
         .where("dateTime", ">=", today)
@@ -104,9 +101,12 @@ function loadUpcomingEvents() {
             })
 }
 
-//generates event details information in the second window//
-function loadEventDetails(eventDoc) {
+//-----------------------------------------------------------Load Event Details------------------------------------------------------------------------//
+//generates html template and enters in information about a specific event identified by eventDoc. Outputs results in window two//
+//reads firebase event guestlist array using .onSnapshot() and reads all the names listed in the array. Outputs list in window three.//
+//input parameter: eventDoc //
 
+function loadEventDetails(eventDoc) {
 
     eventList.doc(eventDoc)
         .onSnapshot(
@@ -167,7 +167,9 @@ function loadEventDetails(eventDoc) {
     windowPositionTwo();
 }
 
+//-----------------------------------------------------------Generate QR Code------------------------------------------------------------------------//
 //generates a qr code with a link to the checkin page.//
+//input parameter: eventID //
 function generateQRCode(eventID) {
     let largeCodeBox = document.createElement("div");
     largeCodeBox.classList.add("qr-code-large");
@@ -183,24 +185,21 @@ function generateQRCode(eventID) {
     let codeSmall = new QRCode(document.getElementById("event-detail-qr-code"));    
     let codeLarge = new QRCode(largeCodeBox); 
     let currentUrl = window.location.href;
-    let newUrl = currentUrl.replace("upcoming-events.html", "check_in.html?userId=" + currentUser.id + "&eventId=" + eventID);
-    let checkinUrl = newUrl;
+    let checkinUrl = currentUrl.replace("upcoming-events.html", "check_in.html?userId=" + currentUser.id + "&eventId=" + eventID);
     codeSmall.makeCode(checkinUrl);
     codeLarge.makeCode(checkinUrl);
     document.getElementById("event-detail-qr-link").setAttribute('href', checkinUrl);
 
     //create a button to expand the code on a new window//    
-    
-    
     codeBox.addEventListener("click", () => {
         largeCodeBox.hidden = false;
-        
     });
     
     codeBox.appendChild(largeWindowButton);
     
 }
 
+//-----------------------------------------------------------Date and Time------------------------------------------------------------------------//
 //formats the date//
 function displayDate(date) {
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -231,6 +230,7 @@ function displayTime(dateTime) {
     }
 }
 
+//-----------------------------------------------------------Input Form Visibiliity------------------------------------------------------------------------//
 //hide and show pop-in forms for adding or removing events/attendees//
 function hideEventForm() {
     addEventForm.hidden = true;

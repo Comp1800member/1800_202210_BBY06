@@ -1,4 +1,7 @@
-//Firebase authentication//
+/* This document contains the functions to load content on past-events.html. */
+
+//-----------------------------------------------------------Firebase Authentication------------------------------------------------------------------------//
+//Checks to make sure the user is logged in.//
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("users").doc(user.uid); //global
@@ -15,6 +18,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
+//-----------------------------------------------------------Page Initialization------------------------------------------------------------------------//
 //On-page element selectors//
 let eventWindowOne = document.getElementById("window-one");
 let eventWindowTwo = document.getElementById("window-two");
@@ -25,7 +29,8 @@ let addEventForm = document.getElementById("add-event-form");
 //Date setting//
 let today = new Date('2022-04-04');
 
-//loads past events on the page//
+//-----------------------------------------------------------Load Past Events------------------------------------------------------------------------//
+//Reads Firebase Collection "eventList" and outputs all results where the date was before the curent date.//
 function loadPastEvents() {
     console.log("Loading past events...");
     eventList
@@ -55,7 +60,10 @@ function loadPastEvents() {
         })
 }
 
-//generates event details information in the second window//
+//-----------------------------------------------------------Load Event Details------------------------------------------------------------------------//
+//generates html template and enters in information about a specific event identified by eventDoc. Outputs results in window two//
+//reads firebase event guestlist array using .onSnapshot() and reads all the names listed in the array. Outputs list in window three.//
+//input parameter: eventDoc //
 function loadEventDetails(eventDoc) {
 
     eventList.doc(eventDoc)
@@ -114,13 +122,16 @@ function loadEventDetails(eventDoc) {
     windowPositionTwo();
 }
 
+//-----------------------------------------------------------Display Date and Time------------------------------------------------------------------------//
 //formats the date//
+//input parameters: date//
 function displayDate(date) {
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return month[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();
 }
 
 //formats the time//
+//input parameters: dateTime//
 function displayTime(dateTime) {
     if (dateTime.getMinutes() < 10) {
         minutes = "0" + dateTime.getMinutes();
@@ -144,6 +155,7 @@ function displayTime(dateTime) {
     }
 }
 
+//-----------------------------------------------------------Event Form Toggles------------------------------------------------------------------------//
 //hides and shows the pop-in add-event form//
 function hideEventForm() {
     addEventForm.hidden = true;

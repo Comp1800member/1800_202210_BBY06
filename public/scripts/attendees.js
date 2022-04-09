@@ -1,7 +1,11 @@
+/* This document contains the functions to load content on Attendees.html. */
+
+//------------------------------------------------------------------Firebase Authentication-----------------------------------------------------------------//
+//Checks to make sure the user is logged in//
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-      currentUser = db.collection("users").doc(user.uid); //global
-      //currentUser = db.collection("users").doc("testUser");
+      currentUser = db.collection("users").doc(user.uid);
+      //currentUser = db.collection("users").doc("testUser"); For testing using testuser
       console.log("user " + user.uid + " is logged in");
 
       loadGroups();
@@ -12,11 +16,13 @@ firebase.auth().onAuthStateChanged(user => {
   }
 });
 
+//On-page element selectors//
 let eventWindowOne = document.getElementById("window-one");
 let eventWindowTwo = document.getElementById("window-two");
 let eventWindowThree = document.getElementById("window-three");
 
-//Loads the groups of attendees in window one.//
+//----------------------------------------------------------------Load Attendee Groups-------------------------------------------------------------------//
+//Reads the collection "groups" and loads all groups in window one.//
 function loadGroups() {
 
   currentUser.collection("groups").get().then(
@@ -43,7 +49,8 @@ function loadGroups() {
   )
 }
 
-//Loads all attendees belonging to the user onto window two//
+//--------------------------------------------------------------Load All Attendees---------------------------------------------------------------------//
+//reads firebase collection "attendeeList", and outputs all results into window two//
 function loadAllAttendees() {
 
   while (eventWindowTwo.firstChild) {
@@ -75,7 +82,10 @@ function loadAllAttendees() {
   windowPositionTwo();
 };
 
+//------------------------------------------------------------------Load Grouped Attendees-----------------------------------------------------------------//
 // Loads all the attendees belonging to a group in window two. //
+//reads firebase collection "attendeeList", and outputs all results that have a specific group attribute (groupID)//
+//input parameter: groupID//
 function loadGroupAttendees(groupID) {
   while (eventWindowTwo.firstChild) {
     eventWindowTwo.removeChild(eventWindowTwo.firstChild);
@@ -103,10 +113,11 @@ function loadGroupAttendees(groupID) {
   )
   windowPositionTwo();
 }
-
-// Loads all the events that a specified attendee has been present in regardless of grouping//
+//--------------------------------------------------------------Load Attendee Details---------------------------------------------------------------------//
+// Loads all the events that a specified attendee has been present in regardless of group attribute into window three.//
+//reads firebase collection "eventList", and outputs all results where the event guestlist array contains a name matching the input//
+//input parameters: firstName, lastName//
 function loadAllAttendeeDetails(firstName, lastName) {
-
 
   while (eventWindowThree.firstChild) {
     eventWindowThree.removeChild(eventWindowThree.firstChild);
@@ -137,7 +148,13 @@ function loadAllAttendeeDetails(firstName, lastName) {
   windowPositionThree();
 }
 
-// Loads the attendee details about a specified group of events on the third window.
+//-----------------------------------------------------------------Load Grouped Attendee Details------------------------------------------------------------------//
+// This funnction pertains to a specific attendee.//
+// It will read all past events with a specific group attribute into window three. The function will check each resulting event guestlist to see if the specific attendee was present in each. //
+// if the attendee was present in that event, that event will be noted as attended. If the attendee was not present, that event will be noted as Absesnt. //
+// results are output in window three. //
+// input parameters: groupID, name //
+
 function loadGroupAttendeeDetails(groupID, name) {
   while (eventWindowThree.firstChild) {
     eventWindowThree.removeChild(eventWindowThree.firstChild);
@@ -170,7 +187,9 @@ function loadGroupAttendeeDetails(groupID, name) {
   windowPositionThree();
 }
 
+//-----------------------------------------------------------Display Date------------------------------------------------------------------------//
 // Formats the date object into a DD MMM YYYY format//
+// input parameter: date //
 function displayDate(date) {
   const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   return month[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear();

@@ -1,5 +1,10 @@
+/*
+This document contains the functions to add/delete events and manually check in attendees to an event.
+This functionality is only present in upcoming-events.html
+*/ 
 
-//--------------------------------Add Event Function------------------------//
+//-------------------------------------------------------------------Add Event Function----------------------------------------------------------------//
+//creates an event document with event information to the collection "eventList"//
 function addEvent() {
 
   let inputEventName = document.getElementById("event-form-input-name").value;
@@ -29,7 +34,9 @@ function addEvent() {
   }
 }
 
-//--------------------------------Delete Event Function------------------------//
+//----------------------------------------------------------------------Delete Event Function-------------------------------------------------------------//
+//removes an event document from the collection "eventList"//
+//input parameter: document ID
 function deleteEvent(docID) {
 
   currentUser.collection("eventList").doc(docID).delete({
@@ -41,7 +48,9 @@ function deleteEvent(docID) {
     })
 }
 
-//--------------------------------Add Present Attendees Function------------------------//
+//--------------------------------------------------------------------Add Present Attendees Function---------------------------------------------------------------//
+//pushes a name to the event guestlist of a specified event identified by docID
+//input parameter: docID
 function addAttendee(docID) {
 
   let attendeeFirstName = document.getElementById("attendee-fname").value;

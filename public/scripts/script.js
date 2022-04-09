@@ -1,3 +1,11 @@
+/* This document contains functions for page elements that are in all pages in the application.
+This includes:
+-three-window positioning
+-Hamburger menu positioning
+-logout button actions
+*/
+
+//-----------------------------------------------------------Page Initialization------------------------------------------------------------------------//
 //initialize variables//
 let hamburgerButton = document.getElementById("hamburger-menu-button");
 let hamburgerMenu = document.querySelector(".hamburger-menu");
@@ -11,12 +19,15 @@ window.addEventListener("load", () => {
     windowPositionOne();
 })
 
+//-----------------------------------------------------------hamburger Menu Positioning------------------------------------------------------------------------//
+
 //event listeners for slide in hamburger menu//
 hamburgerButton.addEventListener("click", () => {
     hamburgerMenu.classList.toggle("active");
     console.log("This is hamburger menu");
 })
 
+//-----------------------------------------------------------Three-Window Positioning------------------------------------------------------------------------//
 //sliding window positions in mobile view//
 function windowPositionOne () {
     contentWindows.classList.remove("position-one");
@@ -49,7 +60,7 @@ backWindowButton.addEventListener("click", () => {
     }
 });
 
-//logout button functionality//
+//-----------------------------------------------------------Logout Button Functionality------------------------------------------------------------------------//
 logOutButton.forEach( button => button.addEventListener("click", () => {
     firebase.auth().signOut().then(() => {
         window.location.href = "login.html";
